@@ -16,7 +16,7 @@ const routes = [
     {
         path: '/dashboard',
         name: 'Layout',
-        component: () => import('@/views/Layout/Layout'),
+        component: () => import('@/components/Layout/Layout'),
         // children: [
         //     {
         //         path: 'dashboard/charts',

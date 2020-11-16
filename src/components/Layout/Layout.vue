@@ -3,7 +3,7 @@
   <Sidebar />
 <!--  <Helper />-->
   <div class="wrap">
-<!--    <Header />-->
+    <Header />
 <!--    <v-touch class="content" @swipe="handleSwipe" :swipe-options="{direction: 'horizontal'}">-->
 <!--      <breadcrumb-history></breadcrumb-history>-->
 <!--      <transition name="router-animation">-->
@@ -22,17 +22,15 @@ import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapActions } = createNamespacedHelpers('layout');
 
 import Sidebar from '@/components/Sidebar/Sidebar';
-// import Header from '@/components/Header/Header';
+import Header from '@/components/Header/Header';
 // import Helper from '@/components/Helper/Helper';
 // import BreadcrumbHistory from '@/components/BreadcrumbHistory/BreadcrumbHistory';
-
-import './Layout.scss';
 
 export default {
   name: 'Layout',
   components: {
     Sidebar,
-    // Header,
+    Header,
   },
   // components: { Sidebar, Header, Helper, BreadcrumbHistory },
   methods: {

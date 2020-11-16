@@ -63,7 +63,7 @@ export default {
 
       if (email.length !== 0 && password.length !== 0) {
         window.localStorage.setItem('authenticated', true);
-        this.$router.push('/app/dashboard');
+        this.$router.push('/dashboard');
       }
     },
   },
