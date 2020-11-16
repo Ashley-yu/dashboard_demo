@@ -35,12 +35,7 @@
         <template slot="button-content">
           <i class="la la-cog px-2" />
         </template>
-        <b-dropdown-item><i class="la la-user" /> My Account</b-dropdown-item>
-        <b-dropdown-divider />
-        <b-dropdown-item>Calendar</b-dropdown-item>
-        <b-dropdown-item>
-          Inbox &nbsp;&nbsp;<b-badge variant="danger" pill class="animate__animated animate__bounceIn">9</b-badge>
-        </b-dropdown-item>
+        <b-dropdown-item><i class="la la-user" /> 帳號管理</b-dropdown-item>
         <b-dropdown-divider />
         <b-dropdown-item-button @click="logout">
           <i class="la la-sign-out" /> Log Out

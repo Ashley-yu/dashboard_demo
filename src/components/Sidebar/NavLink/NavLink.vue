@@ -23,12 +23,12 @@
     <b-collapse :id="'collapse' + index" :visible="isActive">
       <ul class="sub-menu">
         <NavLink v-for="link in childrenLinks"
-          :activeItem="activeItem"
-          :header="link.header"
-          :index="link.index"
-          :link="link.link"
-          :childrenLinks="link.childrenLinks"
-          :key="link.link"
+                 :activeItem="activeItem"
+                 :header="link.header"
+                 :index="link.index"
+                 :link="link.link"
+                 :childrenLinks="link.childrenLinks"
+                 :key="link.link"
         />
       </ul>
     </b-collapse>
@@ -70,7 +70,7 @@ export default {
     togglePanelCollapse(link) {
       this.changeSidebarActive(link);
       this.headerLinkWasClicked = !this.headerLinkWasClicked
-      || !this.activeItem.includes(this.index);
+          || !this.activeItem.includes(this.index);
     },
   },
   computed: {
@@ -79,8 +79,8 @@ export default {
     },
     isActive() {
       return (this.activeItem
-      && this.activeItem.includes(this.index)
-      && this.headerLinkWasClicked);
+          && this.activeItem.includes(this.index)
+          && this.headerLinkWasClicked);
     },
   },
 };

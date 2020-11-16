@@ -8,8 +8,10 @@ import store from './store';
 import App from './App';
 import layoutMixin from './mixins/layout';
 import Widget from './components/Widget/Widget';
+import VueTouch from 'vue-touch-ssr';
 
 Vue.use(BootstrapVue);
+Vue.use(VueTouch);
 Vue.component('Widget', Widget);
 Vue.mixin(layoutMixin);
 
