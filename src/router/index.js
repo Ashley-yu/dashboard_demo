@@ -13,18 +13,18 @@ const routes = [
         name: 'Login',
         component: () => import('@/views/Login/Login')
     },
-    // {
-        // path: '/dashboard',
-        // name: 'Layout',
-        // component: () => import('@/views/Layout.vue'),
+    {
+        path: '/dashboard',
+        name: 'Layout',
+        component: () => import('@/views/Layout/Layout'),
         // children: [
-            // {
-            //     path: 'dashboard/charts',
-            //     name: 'ChartsPage',
-            //     component: () => import('@/views/ChartsPage.vue'),
-            // },
+        //     {
+        //         path: 'dashboard/charts',
+        //         name: 'ChartsPage',
+        //         component: () => import('@/views/ChartsPage.vue'),
+        //     },
         // ],
-    // },
+    },
 ];
 
 // 升級vue-router至3.1以後版本，導航組件重複點擊報錯 NavigationDuplicated
