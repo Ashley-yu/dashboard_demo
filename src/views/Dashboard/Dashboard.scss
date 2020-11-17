@@ -19,3 +19,29 @@
     min-width: 65px;
   }
 }
+
+.datepicker {
+  display: flex;
+  width: 30%;
+  @include media-breakpoint-down(md) {
+    width: 50%;
+  }
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+}
+
+.widget-statistic {
+  &-container {
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+    }
+  }
+
+  &-content {
+    width: 50%;
+    @include media-breakpoint-down(md) {
+      width: 100%;
+    }
+  }
+}

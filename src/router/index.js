@@ -18,26 +18,22 @@ const routes = [
         name: 'Layout',
         redirect: '/dashboard/day',
         component: () => import('@/components/Layout/Layout'),
-        // meta: {
-        //     breadcrumb: {
-        //         name: '首頁',
-        //         link: 'dashboard'
-        //     }
-        // },
         children: [
             {
                 path: 'day',
                 name: 'AnalyticsPage',
                 component: () => import('@/views/Dashboard/Dashboard'),
                 meta: {
-                    breadcrumb: [{
-                        text: '首頁',
-                        to: { name: 'Layout' }
-                    },
-                    {
-                        text: '結帳日總覽',
-                        to: { name: 'AnalyticsPage' }
-                    }]
+                    breadcrumb: [
+                        {
+                            text: '首頁',
+                            to: { name: 'Layout' }
+                        },
+                        {
+                            text: '結帳日總覽',
+                            to: { name: 'AnalyticsPage' }
+                        }
+                    ]
                 },
             },
         ],

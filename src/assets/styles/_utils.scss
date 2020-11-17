@@ -297,9 +297,9 @@ $z-index-variants: (more: 1, less: -1, '10': 10, '-10': -10);
   display: none !important;
 }
 
-.show {
-  display: block !important;
-}
+//.show {
+//  display: block !important;
+//}
 
 .btn-group.show {
   display: inline-flex !important;
