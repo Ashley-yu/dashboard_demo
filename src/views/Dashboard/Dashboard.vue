@@ -164,6 +164,29 @@
         </div>
       </b-col>
     </b-row>
+    <b-row>
+      <b-col md="6" xs="12">
+        <div class="pb-xlg h-100">
+          <Widget class="h-100 mb-0" title="收入來源筆數分佈" close>
+            <highcharts :options="donut('revenue')"></highcharts>
+          </Widget>
+        </div>
+      </b-col>
+      <b-col md="6" xs="12">
+        <div class="pb-xlg h-100">
+          <Widget class="h-100 mb-0" title="照片規格筆數分佈" close>
+            <highcharts :options="donut('specifications')"></highcharts>
+          </Widget>
+        </div>
+      </b-col>
+      <b-col md="6" xs="12">
+        <div class="pb-xlg h-100">
+          <Widget class="h-100 mb-0" title="照片類型筆數分佈" close>
+            <highcharts :options="donut('type')"></highcharts>
+          </Widget>
+        </div>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -172,53 +195,146 @@ import Widget from '@/components/Widget/Widget';
 import BigStat from './components/BigStat/BigStat';
 // import mock from './mock';
 
-// import { Chart } from 'highcharts-vue';
+import { Chart } from 'highcharts-vue';
 
 export default {
   name: 'Dashboard',
   components: {
     Widget,
     BigStat,
+    highcharts: Chart
   },
-  // components: {
-  //   Widget, BigStat, highcharts: Chart
-  // },
   data() {
     return {
       date: '2020-11-17',
-      bigStat: [
-        {
-          product: '收入總額',
-          total: '133,840',
-          color: 'primary',
-          registrations: {
-            value: 830,
-            profit: true,
-          },
-          bounce: {
-            value: 4.5,
-            profit: false,
-          },
-        },
-        {
-          product: 'Sing App',
-          total: '754',
-          color: 'danger',
-          registrations: {
-            value: 30,
-            profit: true,
-          },
-          bounce: {
-            value: 2.5,
-            profit: true,
-          },
-        },
-      ],
     }
   },
   methods: {
+    getToday() {
+      this.date = new Date().toJSON().slice(0,10);
+    },
+    getRevenueData() {
+      const data = [];
+      const seriesCount = 6;
+      const accessories = ['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡'];
+
+      for (let i = 0; i < seriesCount; i += 1) {
+        data.push({
+          label: accessories[i],
+          data: Math.floor(Math.random() * 100) + 1,
+        });
+      }
+
+      return data;
+    },
+    getSpecificationsData() {
+      const data = [];
+      const seriesCount = 4;
+      const accessories = ['1 吋', '2 吋', '身份證', '美簽'];
+
+      for (let i = 0; i < seriesCount; i += 1) {
+        data.push({
+          label: accessories[i],
+          data: Math.floor(Math.random() * 100) + 1,
+        });
+      }
+
+      return data;
+    },
+    getTypeData() {
+      const data = [];
+      const seriesCount = 2;
+      const accessories = ['一般照', '美肌'];
+
+      for (let i = 0; i < seriesCount; i += 1) {
+        data.push({
+          label: accessories[i],
+          data: Math.floor(Math.random() * 100) + 1,
+        });
+      }
+
+      return data;
+    },
+    donut(dataType) {
+      let analysisData = '';
+      let seriesName = '';
+
+      switch (dataType) {
+        case 'revenue':
+          analysisData = this.getRevenueData();
+          seriesName = 'Revenue';
+          break;
+        case 'specifications':
+          analysisData = this.getSpecificationsData();
+          seriesName = 'Specifications';
+          break;
+        case 'type':
+          analysisData = this.getTypeData();
+          seriesName = 'Type';
+          break;
+        default:
+      }
+
+      let {primary, success, danger, warning, info, inverse} = this.appConfig.colors;
+      let series = [
+        {
+          name: seriesName,
+          data: analysisData.map(s => {
+            return {
+              name: s.label,
+              y: s.data
+            }
+          })
+        }
+      ];
+      return {
+        chart: {
+          type: 'pie',
+          height: 300,
+        },
+        credits: {
+          enabled: false
+        },
+        title: {
+          text: '2020-11-18'
+        },
+        plotOptions: {
+          pie: {
+            dataLabels: {
+              enabled: false
+            },
+            borderColor: null,
+            showInLegend: true,
+            innerSize: '40%',
+            size: '100%',
+            states: {
+              hover: {
+                halo: {
+                  size: 8
+                }
+              }
+            }
+          }
+        },
+        colors: [primary, success, danger, warning, info, inverse],
+        legend: {
+          itemStyle: {
+            color: '#495057',
+            fontWeight: 100,
+            fontFamily: 'Montserrat'
+          },
+          itemMarginBottom: 5,
+          symbolRadius: 0
+        },
+        exporting: {
+          enabled: false
+        },
+        series
+      };
+    },
   },
-  computed: {
+  created() {
+    this.getToday();
   }
 };
 </script>
