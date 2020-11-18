@@ -21,8 +21,8 @@ const routes = [
         children: [
             {
                 path: 'day',
-                name: 'AnalyticsPage',
-                component: () => import('@/views/Dashboard/Dashboard'),
+                name: 'DayOverview',
+                component: () => import('@/views/DayOverview/DayOverview'),
                 meta: {
                     breadcrumb: [
                         {
@@ -31,7 +31,24 @@ const routes = [
                         },
                         {
                             text: '結帳日總覽',
-                            to: { name: 'AnalyticsPage' }
+                            to: { name: 'DayOverview' }
+                        }
+                    ]
+                },
+            },
+            {
+                path: 'month',
+                name: 'MonthOverview',
+                component: () => import('@/views/MonthOverview/MonthOverview'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '首頁',
+                            to: { name: 'Layout' }
+                        },
+                        {
+                            text: '每日總覽',
+                            to: { name: 'MonthOverview' }
                         }
                     ]
                 },

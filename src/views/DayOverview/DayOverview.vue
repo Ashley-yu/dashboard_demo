@@ -192,26 +192,22 @@
 
 <script>
 import Widget from '@/components/Widget/Widget';
-import BigStat from './components/BigStat/BigStat';
-// import mock from './mock';
-
 import { Chart } from 'highcharts-vue';
 
 export default {
   name: 'Dashboard',
   components: {
     Widget,
-    BigStat,
     highcharts: Chart
   },
   data() {
     return {
-      date: '2020-11-17',
+      date: '',
     }
   },
   methods: {
-    getToday() {
-      this.date = new Date().toJSON().slice(0,10);
+    getDate() {
+      this.date = new Date(new Date().setDate(new Date().getDate()-1)).toJSON().slice(0,10);
     },
     getRevenueData() {
       const data = [];
@@ -334,9 +330,9 @@ export default {
     },
   },
   created() {
-    this.getToday();
+    this.getDate();
   }
 };
 </script>
 
-<style src="./Dashboard.scss" lang="scss" />
+<style src="./DayOverview.scss" lang="scss" />
