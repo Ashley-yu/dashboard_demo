@@ -26,22 +26,10 @@
   @include media-breakpoint-down(md) {
     width: 50%;
   }
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(xs) {
     width: 100%;
   }
 }
-
-.widget-statistic {
-  &-container {
-    @include media-breakpoint-down(md) {
-      flex-direction: column;
-    }
-  }
-
-  &-content {
-    width: 50%;
-    @include media-breakpoint-down(md) {
-      width: 100%;
-    }
-  }
-}
+//.dashboard-page * {
+//  border: solid black 1px;
+//}
