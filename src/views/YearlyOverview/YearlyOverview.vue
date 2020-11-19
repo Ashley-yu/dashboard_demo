@@ -4,7 +4,7 @@
     <b-row>
       <b-col >
         <div class="pb-xlg h-100">
-          <Widget class="h-100 mb-0">
+          <Widget class="mb-0">
             <div class="d-flex justify-content-center align-items-center flex-column mb-lg">
               <h5>查詢年份</h5>
               <datepicker
@@ -21,7 +21,7 @@
               </datepicker>
             </div>
             <hr>
-            <p class="text-center">預設資料為本年度月份累積資訊</p>
+            <p class="mb-0 text-center">預設資料為本年度月份累積資訊</p>
           </Widget>
         </div>
       </b-col>
