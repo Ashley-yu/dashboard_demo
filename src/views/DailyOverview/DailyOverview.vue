@@ -7,7 +7,16 @@
           <Widget class="h-100 mb-0">
             <div class="d-flex justify-content-center align-items-center flex-column mb-lg">
               <h5>查詢日期</h5>
-              <b-form-datepicker v-model="date" class="mt datepicker"></b-form-datepicker>
+              <datepicker
+                  :calendar-button-icon="'fa fa-calendar-o'"
+                  :language="zh"
+                  format="yyyy-MM-dd"
+                  calendar-button
+                  bootstrap-styling
+                  v-model="date"
+                  class="mt"
+              >
+              </datepicker>
             </div>
             <hr>
             <p class="text-center">預設資料為昨日結帳累積資訊</p>
@@ -193,6 +202,7 @@
 <script>
 import Widget from '@/components/Widget/Widget';
 import { Chart } from 'highcharts-vue';
+import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'Dashboard',
@@ -203,6 +213,7 @@ export default {
   data() {
     return {
       date: '',
+      zh: zh,
     }
   },
   methods: {
@@ -335,4 +346,4 @@ export default {
 };
 </script>
 
-<style src="./DayOverview.scss" lang="scss" />
+<style src="./DailyOverview.scss" lang="scss" />

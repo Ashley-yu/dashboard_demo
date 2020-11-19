@@ -21,8 +21,8 @@ const routes = [
         children: [
             {
                 path: 'day',
-                name: 'DayOverview',
-                component: () => import('@/views/DayOverview/DayOverview'),
+                name: 'DailyOverview',
+                component: () => import('@/views/DailyOverview/DailyOverview'),
                 meta: {
                     breadcrumb: [
                         {
@@ -31,15 +31,15 @@ const routes = [
                         },
                         {
                             text: '結帳日總覽',
-                            to: { name: 'DayOverview' }
+                            to: { name: 'DailyOverview' }
                         }
                     ]
                 },
             },
             {
                 path: 'month',
-                name: 'MonthOverview',
-                component: () => import('@/views/MonthOverview/MonthOverview'),
+                name: 'MonthlyOverview',
+                component: () => import('@/views/MonthlyOverview/MonthlyOverview'),
                 meta: {
                     breadcrumb: [
                         {
@@ -48,7 +48,24 @@ const routes = [
                         },
                         {
                             text: '每日總覽',
-                            to: { name: 'MonthOverview' }
+                            to: { name: 'MonthlyOverview' }
+                        }
+                    ]
+                },
+            },
+            {
+                path: 'year',
+                name: 'YearlyOverview',
+                component: () => import('@/views/YearlyOverview/YearlyOverview'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '首頁',
+                            to: { name: 'Layout' }
+                        },
+                        {
+                            text: '每月總覽',
+                            to: { name: 'YearlyOverview' }
                         }
                     ]
                 },

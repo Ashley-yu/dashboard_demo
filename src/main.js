@@ -9,10 +9,12 @@ import App from './App';
 import layoutMixin from './mixins/layout';
 import Widget from './components/Widget/Widget';
 import VueTouch from 'vue-touch';
+import Datepicker from 'vuejs-datepicker';
 
 Vue.use(BootstrapVue);
 Vue.use(VueTouch);
 Vue.component('Widget', Widget);
+Vue.component('Datepicker', Datepicker);
 Vue.mixin(layoutMixin);
 
 Vue.config.productionTip = false;

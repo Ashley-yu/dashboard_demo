@@ -740,3 +740,52 @@ pre {
 .echarts {
   width: 100%;
 }
+
+////// Datepicker //////
+.vdp-datepicker {
+
+  &:hover {
+
+    .input-group-text {
+      color: map-get($theme-colors, 'primary');
+    }
+  }
+
+  .input-group-text, .form-control {
+    background-color: transparent;
+  }
+
+  .input-group-text {
+    font-size: 18px;
+  }
+
+  .form-control {
+    cursor: pointer;
+
+    &:focus {
+      border-color: $gray-400;
+    }
+  }
+
+  &__calendar {
+    .cell:not(.blank):not(.disabled).day:hover,
+    .cell:not(.blank):not(.disabled).month:hover,
+    .cell:not(.blank):not(.disabled).year:hover {
+      border-color: rgba(map-get($theme-colors, 'primary'), 0.8) !important;
+    }
+
+    .cell.day,
+    .cell.month,
+    .cell.year {
+      border-radius: $border-radius-sm;
+
+      &.selected {
+        background-color: rgba(map-get($theme-colors, 'info'), 0.2);
+
+        &:hover {
+          background-color: rgba(map-get($theme-colors, 'info'), 0.2);
+        }
+      }
+    }
+  }
+}

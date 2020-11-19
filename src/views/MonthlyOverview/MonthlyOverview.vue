@@ -7,7 +7,18 @@
           <Widget class="h-100 mb-0">
             <div class="d-flex justify-content-center align-items-center flex-column mb-lg">
               <h5>查詢月份</h5>
-              <b-form-datepicker v-model="month" class="mt datepicker"></b-form-datepicker>
+              <datepicker
+                  :calendar-button-icon="'fa fa-calendar-o'"
+                  :language="zh"
+                  :minimumView="'month'"
+                  :maximumView="'month'"
+                  format="yyyy-MM"
+                  calendar-button
+                  bootstrap-styling
+                  v-model="month"
+                  class="mt"
+              >
+              </datepicker>
             </div>
             <hr>
             <p class="text-center">預設資料為本月每日累積資訊</p>
@@ -21,6 +32,7 @@
 <script>
 import Widget from '@/components/Widget/Widget';
 import { Chart } from 'highcharts-vue';
+import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'Dashboard',
@@ -30,14 +42,19 @@ export default {
   },
   data() {
     return {
-      month: '2020-11',
+      month: '',
+      zh: zh,
     }
   },
   methods: {
+    getMonth() {
+      this.month = new Date().toJSON().slice(0,7);
+    },
   },
   created() {
+    this.getMonth()
   }
 };
 </script>
 
-<style src="./MonthOverview.scss" lang="scss" />
+<style src="./MonthlyOverview.scss" lang="scss" />
