@@ -741,6 +741,11 @@ pre {
   width: 100%;
 }
 
+////// highcharts //////
+.highcharts-button-box {
+  cursor: pointer;
+}
+
 ////// Datepicker //////
 .vdp-datepicker {
 
@@ -777,14 +782,22 @@ pre {
     .cell.day,
     .cell.month,
     .cell.year {
-      border-radius: $border-radius-sm;
-
       &.selected {
         background-color: rgba(map-get($theme-colors, 'info'), 0.2);
 
         &:hover {
           background-color: rgba(map-get($theme-colors, 'info'), 0.2);
         }
+
+        &.highlight-end,
+        &.highlight-start {
+          background-color: rgba(map-get($theme-colors, 'info'), 0.5);
+        }
+      }
+
+      &.highlighted {
+        background-color: rgba(map-get($theme-colors, 'info'), 0.2);
+
       }
     }
   }

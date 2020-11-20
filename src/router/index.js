@@ -70,6 +70,23 @@ const routes = [
                     ]
                 },
             },
+            {
+                path: 'annual',
+                name: 'AnnualOverview',
+                component: () => import('@/views/AnnualOverview/AnnualOverview'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '首頁',
+                            to: { name: 'Layout' }
+                        },
+                        {
+                            text: '年度總覽',
+                            to: { name: 'AnnualOverview' }
+                        }
+                    ]
+                },
+            },
         ],
     },
 ];

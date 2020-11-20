@@ -218,10 +218,13 @@
 <script>
 import Widget from '@/components/Widget/Widget';
 import { Chart } from 'highcharts-vue';
+import Highcharts from 'highcharts';
+import exporting from 'highcharts/modules/exporting';
+exporting(Highcharts);
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
-  name: 'Dashboard',
+  name: 'DailyOverview',
   components: {
     Widget,
     highcharts: Chart
@@ -318,7 +321,16 @@ export default {
           symbolRadius: 0
         },
         exporting: {
-          enabled: false
+          buttons: {
+            contextButton: {
+              menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF']
+            }
+          }
+        },
+        navigation: {
+          buttonOptions: {
+            enabled: true,
+          }
         },
         series
       };

@@ -45,7 +45,7 @@
             </div>
             <div class="px-4 d-flex flex-wrap justify-content-between">
               <div class="mt">
-                <h6>+8300</h6>
+                <h6>+8,300</h6>
                 <p class="text-muted mb-0 mr">
                   <small>收入</small>
                 </p>
@@ -144,10 +144,13 @@
 <script>
 import Widget from '@/components/Widget/Widget';
 import { Chart } from 'highcharts-vue';
+import Highcharts from 'highcharts';
+import exporting from 'highcharts/modules/exporting';
+exporting(Highcharts);
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
-  name: 'Dashboard',
+  name: 'MonthlyOverview',
   components: {
     Widget,
     highcharts: Chart
@@ -212,7 +215,11 @@ export default {
           height: 420,
         },
         exporting: {
-          enabled: false
+          buttons: {
+            contextButton: {
+              menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF']
+            }
+          }
         },
         title: {
           text: this.formatMonth,
