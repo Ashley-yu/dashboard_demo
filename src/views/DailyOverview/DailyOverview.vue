@@ -11,7 +11,7 @@
                 <datepicker
                     :calendar-button-icon="'fa fa-calendar-o'"
                     :language="zh"
-                    format="yyyy-MM-dd"
+                    :format="'yyyy-MM-dd'"
                     calendar-button
                     bootstrap-styling
                     v-model="date"
@@ -38,7 +38,7 @@
                 customHeader
                 close
             >
-              <div class="px-4 d-flex justify-content-between align-items-center mb-md">
+              <div class="px-4 d-flex justify-content-between align-items-center mb-sm mt-sm">
                 <h2>142,460</h2>
                 <i class="la la-arrow-right text-primary la-lg rotate-315" />
               </div>
@@ -77,7 +77,7 @@
                 customHeader
                 close
             >
-              <div class="px-4 d-flex justify-content-between align-items-center mb-md">
+              <div class="px-4 d-flex justify-content-between align-items-center  mb-sm mt-sm">
                 <h2>14,880 / 外交部2</h2>
               </div>
               <div class="px-4 d-flex flex-wrap justify-content-between">
@@ -106,7 +106,7 @@
                 customHeader
                 close
             >
-              <div class="px-4 d-flex justify-content-between align-items-center mb-md">
+              <div class="px-4 d-flex justify-content-between align-items-center mb-sm mt-sm">
                 <h2>934</h2>
                 <i class="la la-arrow-right text-primary la-lg rotate-315" />
               </div>
@@ -133,7 +133,7 @@
                 customHeader
                 close
             >
-              <div class="px-4 d-flex justify-content-between align-items-center mb-md">
+              <div class="px-4 d-flex justify-content-between align-items-center mb-sm bt-sm">
                 <h2>96 / 103</h2>
                 <i class="la la-arrow-right text-primary la-lg rotate-315" />
               </div>
@@ -160,7 +160,7 @@
                 customHeader
                 close
             >
-              <div class="px-4 d-flex justify-content-between align-items-center mb-md">
+              <div class="px-4 d-flex justify-content-between align-items-center mb-sm bt-sm">
                 <h2>8</h2>
                 <i class="la la-arrow-right text-danger la-lg rotate-45" />
               </div>
@@ -174,7 +174,7 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col md="6" xs="12">
+        <b-col md="6" xl="4" xs="12">
           <div class="pb-xlg h-100">
             <Widget
                 class="mb-0"
@@ -186,7 +186,7 @@
             </Widget>
           </div>
         </b-col>
-        <b-col md="6" xs="12">
+        <b-col md="6" xl="4" xs="12">
           <div class="pb-xlg h-100">
             <Widget
                 class="mb-0"
@@ -198,7 +198,7 @@
             </Widget>
           </div>
         </b-col>
-        <b-col md="6" xs="12">
+        <b-col md="6" xl="4" xs="12">
           <div class="pb-xlg h-100">
             <Widget
                 class="mb-0"
@@ -236,46 +236,14 @@ export default {
     getDate() {
       this.date = new Date(new Date().setDate(new Date().getDate()-1)).toJSON().slice(0,10);
     },
-    getRevenueData() {
+    getData(seriesCount, accessories) {
       const data = [];
-      const seriesCount = 6;
-      const accessories = ['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡'];
-
       for (let i = 0; i < seriesCount; i += 1) {
         data.push({
           label: accessories[i],
           data: Math.floor(Math.random() * 100) + 1,
         });
       }
-
-      return data;
-    },
-    getSpecificationsData() {
-      const data = [];
-      const seriesCount = 4;
-      const accessories = ['1 吋', '2 吋', '身份證', '美簽'];
-
-      for (let i = 0; i < seriesCount; i += 1) {
-        data.push({
-          label: accessories[i],
-          data: Math.floor(Math.random() * 100) + 1,
-        });
-      }
-
-      return data;
-    },
-    getTypeData() {
-      const data = [];
-      const seriesCount = 2;
-      const accessories = ['一般照', '美肌'];
-
-      for (let i = 0; i < seriesCount; i += 1) {
-        data.push({
-          label: accessories[i],
-          data: Math.floor(Math.random() * 100) + 1,
-        });
-      }
-
       return data;
     },
     donut(dataType) {
@@ -284,15 +252,15 @@ export default {
 
       switch (dataType) {
         case 'revenue':
-          analysisData = this.getRevenueData();
+          analysisData = this.getData(6, ['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡']);
           seriesName = 'Revenue';
           break;
         case 'specifications':
-          analysisData = this.getSpecificationsData();
+          analysisData = this.getData(4,['1 吋', '2 吋', '身份證', '美簽'])
           seriesName = 'Specifications';
           break;
         case 'type':
-          analysisData = this.getTypeData();
+          analysisData = this.getData(2,['一般照', '美肌']);
           seriesName = 'Type';
           break;
         default:
@@ -319,7 +287,7 @@ export default {
           enabled: false
         },
         title: {
-          text: '2020-11-18'
+          text: this.formatDate,
         },
         plotOptions: {
           pie: {
@@ -354,6 +322,11 @@ export default {
         },
         series
       };
+    },
+  },
+  computed: {
+    formatDate() {
+      return new Date(this.date).toJSON().slice(0,10);
     },
   },
   created() {

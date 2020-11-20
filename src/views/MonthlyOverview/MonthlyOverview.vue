@@ -39,7 +39,7 @@
               customHeader
               close
           >
-            <div class="px-4 d-flex justify-content-between align-items-center mb-md">
+            <div class="px-4 d-flex justify-content-between align-items-center mb-sm bt-sm">
               <h2>3,143,660</h2>
               <i class="la la-arrow-right text-primary la-lg rotate-315" />
             </div>
@@ -69,7 +69,7 @@
               customHeader
               close
           >
-            <div class="px-4 d-flex justify-content-between align-items-center mb-md">
+            <div class="px-4 d-flex justify-content-between align-items-center mb-sm bt-sm">
               <h2>20,759</h2>
               <i class="la la-arrow-right text-primary la-lg rotate-315" />
             </div>
@@ -88,8 +88,8 @@
         </div>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col xs="12">
+    <b-row cols="1">
+      <b-col>
         <div class="pb-xlg h-100">
           <Widget
               class="mb-0"
@@ -101,7 +101,7 @@
           </Widget>
         </div>
       </b-col>
-      <b-col xs="12">
+      <b-col>
         <div class="pb-xlg h-100">
           <Widget
               class="mb-0"
@@ -109,7 +109,31 @@
               close
               collapse
           >
-            <highcharts :options="lineChart('dailyRevenue')"></highcharts>
+            <highcharts :options="lineChart('RevenueSource')"></highcharts>
+          </Widget>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="照片規格每日筆數"
+              close
+              collapse
+          >
+            <highcharts :options="lineChart('photoSpec')"></highcharts>
+          </Widget>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="照片類型每日筆數"
+              close
+              collapse
+          >
+            <highcharts :options="lineChart('photoType')"></highcharts>
           </Widget>
         </div>
       </b-col>
@@ -138,49 +162,42 @@ export default {
     getMonth() {
       this.month = new Date().toJSON().slice(0,7);
     },
-    getDailyRevenueData() {
-      return [{
-        name: "日收入",
-        data: [
-          [Date.UTC(2020, 11, 1), 197020],
-          [Date.UTC(2020, 11, 2), 149620],
-          [Date.UTC(2020, 11, 3), 149470],
-          [Date.UTC(2020, 11, 4), 50600],
-          [Date.UTC(2020, 11, 5), 37550],
-          [Date.UTC(2020, 11, 6), 51820],
-          [Date.UTC(2020, 11, 7), 85050],
-          [Date.UTC(2020, 11, 8), 196620],
-          [Date.UTC(2020, 11, 9), 151750],
-          [Date.UTC(2020, 11, 10), 166050],
-          [Date.UTC(2020, 11, 11), 142460],
-          [Date.UTC(2020, 11, 12), 133840],
-          [Date.UTC(2020, 11, 13), 65550],
-          [Date.UTC(2020, 11, 14), 79630],
-          [Date.UTC(2020, 11, 15), 170610],
-          [Date.UTC(2020, 11, 16), 123030],
-          [Date.UTC(2020, 11, 17), 160280],
-          [Date.UTC(2020, 11, 18), 130400],
-          [Date.UTC(2020, 11, 19), 128510],
-          [Date.UTC(2020, 11, 20), 66320],
-          [Date.UTC(2020, 11, 21), 74700],
-          [Date.UTC(2020, 11, 22), 10000],
-          [Date.UTC(2020, 11, 23), 15200],
-          [Date.UTC(2020, 11, 24), 104530],
-          [Date.UTC(2020, 11, 25), 114200],
-          [Date.UTC(2020, 11, 26), 92910],
-          [Date.UTC(2020, 11, 27), 23290],
-          [Date.UTC(2020, 11, 28), 40530],
-          [Date.UTC(2020, 11, 29), 124530],
-          [Date.UTC(2020, 11, 30), 117590],
-        ]
-      }]
+    getData(seriesCount, accessories, max, min) {
+      const data = [];
+      const year = parseInt(this.formatMonth.toString().substring(0,4));
+      const month = parseInt(this.formatMonth.toString().substring(5,8));
+
+      for (let i = 0; i < seriesCount; i += 1) {
+        let randomData = [];
+        for (let j = 1; j < 31; j++) {
+          randomData.push([
+            Date.UTC(year, month, j), Math.floor(Math.random()*(max-min+1))+min
+          ])
+        }
+
+        data.push({
+          name: accessories[i],
+          data: randomData,
+        });
+      }
+
+      return data;
     },
     lineChart(dataType) {
-      let series = "";
+      let series = [];
 
       switch (dataType) {
         case 'dailyRevenue':
-          series = this.getDailyRevenueData();
+          series = this.getData(1, ['日收入'],200000,10000);
+          break;
+        case 'RevenueSource':
+          series = this.getData(6,['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡'],1000,0);
+          break;
+        case 'photoSpec':
+          series = this.getData(4,['1 吋', '2 吋', '身份證', '美簽'],1100,0);
+          break;
+        case 'photoType':
+          series = this.getData(2,['一般照', '美肌'],1100,0);
           break;
         default:
       }
@@ -192,13 +209,13 @@ export default {
       return {
         chart: {
           type: 'spline',
-          height: 350
+          height: 420,
         },
         exporting: {
           enabled: false
         },
         title: {
-          text: '2020年11月',
+          text: this.formatMonth,
           style: {
             color: textColor
           }
@@ -229,19 +246,26 @@ export default {
           },
         },
         legend: {
-          enabled: true
+          enabled: true,
         },
         plotOptions: {
           series: {
+            lineWidth: 2,
+            shadow: true,
             marker: {
-              enabled: true,
-              symbol: 'circle'
+              enabled: false,
+              symbol: 'circle',
             }
           }
         },
         colors: [primary, success, danger, warning, info, inverse],
         series
       };
+    },
+  },
+  computed: {
+    formatMonth() {
+      return new Date(this.month).toJSON().slice(0,7);
     },
   },
   created() {
