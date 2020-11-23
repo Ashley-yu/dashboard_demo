@@ -182,7 +182,11 @@
                 close
                 collapse
             >
-              <highcharts :options="donut('revenue')"></highcharts>
+              <ChartDonut
+                :titleText=formatDate
+                :accessories="['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡']"
+                :seriesName="'Revenue'"
+              />
             </Widget>
           </div>
         </b-col>
@@ -194,7 +198,11 @@
                 close
                 collapse
             >
-              <highcharts :options="donut('specifications')"></highcharts>
+              <ChartDonut
+                  :titleText=formatDate
+                  :accessories="['1 吋', '2 吋', '身份證', '美簽']"
+                  :seriesName="'Specifications'"
+              />
             </Widget>
           </div>
         </b-col>
@@ -206,7 +214,11 @@
                 close
                 collapse
             >
-              <highcharts :options="donut('type')"></highcharts>
+              <ChartDonut
+                  :titleText=formatDate
+                  :accessories="['一般照', '美肌']"
+                  :seriesName="'Type'"
+              />
             </Widget>
           </div>
         </b-col>
@@ -216,18 +228,15 @@
 </template>
 
 <script>
+import ChartDonut from "@/components/Charts/ChartDonut";
 import Widget from '@/components/Widget/Widget';
-import { Chart } from 'highcharts-vue';
-import Highcharts from 'highcharts';
-import exporting from 'highcharts/modules/exporting';
-exporting(Highcharts);
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'DailyOverview',
   components: {
     Widget,
-    highcharts: Chart
+    ChartDonut,
   },
   data() {
     return {
@@ -238,102 +247,6 @@ export default {
   methods: {
     getDate() {
       this.date = new Date(new Date().setDate(new Date().getDate()-1)).toJSON().slice(0,10);
-    },
-    getData(seriesCount, accessories) {
-      const data = [];
-      for (let i = 0; i < seriesCount; i += 1) {
-        data.push({
-          label: accessories[i],
-          data: Math.floor(Math.random() * 100) + 1,
-        });
-      }
-      return data;
-    },
-    donut(dataType) {
-      let analysisData = '';
-      let seriesName = '';
-
-      switch (dataType) {
-        case 'revenue':
-          analysisData = this.getData(6, ['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡']);
-          seriesName = 'Revenue';
-          break;
-        case 'specifications':
-          analysisData = this.getData(4,['1 吋', '2 吋', '身份證', '美簽'])
-          seriesName = 'Specifications';
-          break;
-        case 'type':
-          analysisData = this.getData(2,['一般照', '美肌']);
-          seriesName = 'Type';
-          break;
-        default:
-      }
-
-      const {primary, success, danger, warning, info, inverse} = this.appConfig.colors;
-      let series = [
-        {
-          name: seriesName,
-          data: analysisData.map(s => {
-            return {
-              name: s.label,
-              y: s.data
-            }
-          })
-        }
-      ];
-      return {
-        chart: {
-          type: 'pie',
-          height: 300,
-        },
-        credits: {
-          enabled: false
-        },
-        title: {
-          text: this.formatDate,
-        },
-        plotOptions: {
-          pie: {
-            dataLabels: {
-              enabled: false
-            },
-            borderColor: null,
-            showInLegend: true,
-            innerSize: '40%',
-            size: '100%',
-            states: {
-              hover: {
-                halo: {
-                  size: 8
-                }
-              }
-            }
-          }
-        },
-        colors: [primary, success, danger, warning, info, inverse],
-        legend: {
-          itemStyle: {
-            color: '#495057',
-            fontWeight: 100,
-            fontFamily: 'Montserrat'
-          },
-          itemMarginBottom: 5,
-          symbolRadius: 0
-        },
-        exporting: {
-          buttons: {
-            contextButton: {
-              menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF']
-            }
-          }
-        },
-        navigation: {
-          buttonOptions: {
-            enabled: true,
-          }
-        },
-        series
-      };
     },
   },
   computed: {
@@ -346,5 +259,3 @@ export default {
   }
 };
 </script>
-
-<style src="./DailyOverview.scss" lang="scss" />

@@ -44,22 +44,92 @@
         </div>
       </b-col>
     </b-row>
+    <b-row cols="1">
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="年度收入總額"
+              close
+              collapse
+          >
+            <ChartBar
+                :titleText="titleText"
+                :accessories="['年收入']"
+                :max="52000000"
+                :min="2000000"
+                :showType="'year'"
+            />
+          </Widget>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="收入來源年度筆數"
+              close
+              collapse
+          >
+            <ChartStackedColumn
+                :titleText="titleText"
+                :accessories="['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡']"
+                :max="350000"
+                :min="0"
+            />
+          </Widget>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="照片規格年度筆數"
+              close
+              collapse
+          >
+            <ChartStackedColumn
+                :titleText="titleText"
+                :accessories="['1 吋', '2 吋', '身份證', '美簽']"
+                :max="350000"
+                :min="0"
+            />
+          </Widget>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="照片類型年度筆數"
+              close
+              collapse
+          >
+            <ChartStackedColumn
+                :titleText="titleText"
+                :accessories="['一般照', '美肌']"
+                :max="350000"
+                :min="0"
+            />
+          </Widget>
+        </div>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
 <script>
+import ChartBar from "@/components/Charts/ChartBar";
+import ChartStackedColumn from "@/components/Charts/ChartStackedColumn";
 import Widget from '@/components/Widget/Widget';
-import { Chart } from 'highcharts-vue';
-import Highcharts from 'highcharts';
-import exporting from 'highcharts/modules/exporting';
-exporting(Highcharts);
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'AnnualOverview',
   components: {
     Widget,
-    highcharts: Chart
+    ChartBar,
+    ChartStackedColumn,
   },
   data() {
     return {
@@ -81,11 +151,12 @@ export default {
     formatYearTo() {
       return new Date(this.yearTo).toJSON().slice(0,4);
     },
+    titleText() {
+      return `${this.formatYearFrom}~${this.formatYearTo}`;
+    }
   },
   created() {
     this.getYear();
   }
 };
 </script>
-
-<style src="./AnnualOverview.scss" lang="scss" />

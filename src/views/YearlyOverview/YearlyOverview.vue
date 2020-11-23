@@ -88,7 +88,7 @@
         </div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row cols="1">
       <b-col>
         <div class="pb-xlg h-100">
           <Widget
@@ -97,7 +97,65 @@
               close
               collapse
           >
-            <highcharts :options="barChart('dailyRevenue')"></highcharts>
+            <ChartBar
+                :titleText=formatYear
+                :accessories="['月收入']"
+                :max="7500000"
+                :min="2000000"
+                :showType="'month'"
+            />
+          </Widget>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="收入來源每月筆數"
+              close
+              collapse
+          >
+            <ChartLine
+                :titleText=formatYear
+                :accessories="['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡']"
+                :max="35000"
+                :min="0"
+                :showType="'month'"
+            />
+          </Widget>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="照片規格每月筆數"
+              close
+              collapse
+          >
+            <ChartColumn
+                :titleText=formatYear
+                :accessories="['1 吋', '2 吋', '身份證', '美簽']"
+                :max="35000"
+                :min="0"
+            />
+          </Widget>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="pb-xlg h-100">
+          <Widget
+              class="mb-0"
+              title="照片類型每月筆數"
+              close
+              collapse
+          >
+            <ChartColumn
+                :titleText=formatYear
+                :accessories="['一般照', '美肌']"
+                :max="35000"
+                :min="0"
+            />
           </Widget>
         </div>
       </b-col>
@@ -106,18 +164,19 @@
 </template>
 
 <script>
+import ChartBar from "@/components/Charts/ChartBar";
+import ChartLine from "@/components/Charts/ChartLine";
+import ChartColumn from "@/components/Charts/ChartColumn";
 import Widget from '@/components/Widget/Widget';
-import { Chart } from 'highcharts-vue';
-import Highcharts from 'highcharts';
-import exporting from 'highcharts/modules/exporting';
-exporting(Highcharts);
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'YearlyOverview',
   components: {
     Widget,
-    highcharts: Chart
+    ChartBar,
+    ChartLine,
+    ChartColumn,
   },
   data() {
     return {
@@ -128,96 +187,6 @@ export default {
   methods: {
     getYear() {
       this.year = new Date().toJSON().slice(0,4);
-    },
-    getData(seriesCount, accessories, max, min) {
-      const data = [];
-
-      for (let i = 0; i < seriesCount; i += 1) {
-        let randomData = [];
-        for (let j = 0; j < 12; j++) {
-          randomData.push([
-            Math.floor(Math.random()*(max-min+1))+min
-          ])
-        }
-
-        data.push({
-          name: accessories[i],
-          data: randomData,
-        });
-      }
-
-      return data;
-    },
-    barChart(dataType) {
-      let series = [];
-
-      switch (dataType) {
-        case 'dailyRevenue':
-          series = this.getData(1, ['月收入'],7500000,2000000);
-          break;
-        default:
-      }
-
-      const {inverse, info, primary, danger, warning, success, textColor} = this.appConfig.colors;
-      const chartColors = this.appConfig.colors;
-      const {axisColor} = chartColors;
-
-      return {
-        chart: {
-          type: 'bar',
-          height: 500,
-        },
-        exporting: {
-          buttons: {
-            contextButton: {
-              menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF']
-            }
-          }
-        },
-        title: {
-          text: this.formatYear,
-          style: {
-            color: textColor
-          }
-        },
-        credits: {
-          enabled: false
-        },
-        xAxis: {
-          categories: ['12月', '11月', '10月', '9月', '8月', '7月', '6月', '5月', '4月', '3月', '2月', '1月'],
-          labels: {
-            style: {
-              color: axisColor
-            }
-          }
-        },
-        yAxis: {
-          min: 0,
-          title: {
-            enabled: false,
-          },
-          labels: {
-            style: {
-              color: axisColor
-            }
-          },
-        },
-        legend: {
-          enabled: true,
-        },
-        plotOptions: {
-          bar: {
-            dataLabels: {
-              enabled: false,
-            }
-          },
-          series: {
-            pointWidth: 20,
-          },
-        },
-        colors: [primary, success, danger, warning, info, inverse],
-        series
-      };
     },
   },
   computed: {
@@ -230,5 +199,3 @@ export default {
   }
 };
 </script>
-
-<style src="./YearlyOverview.scss" lang="scss" />

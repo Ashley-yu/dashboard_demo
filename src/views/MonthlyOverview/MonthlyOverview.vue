@@ -97,7 +97,13 @@
               close
               collapse
           >
-            <highcharts :options="lineChart('dailyRevenue')"></highcharts>
+            <ChartLine
+                :titleText=formatMonth
+                :accessories="['日收入']"
+                :max="200000"
+                :min="10000"
+                :showType="'day'"
+            />
           </Widget>
         </div>
       </b-col>
@@ -109,7 +115,13 @@
               close
               collapse
           >
-            <highcharts :options="lineChart('RevenueSource')"></highcharts>
+            <ChartLine
+                :titleText=formatMonth
+                :accessories="['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡']"
+                :max="1000"
+                :min="0"
+                :showType="'day'"
+            />
           </Widget>
         </div>
       </b-col>
@@ -121,7 +133,13 @@
               close
               collapse
           >
-            <highcharts :options="lineChart('photoSpec')"></highcharts>
+            <ChartLine
+                :titleText=formatMonth
+                :accessories="['1 吋', '2 吋', '身份證', '美簽']"
+                :max="1100"
+                :min="0"
+                :showType="'day'"
+            />
           </Widget>
         </div>
       </b-col>
@@ -133,7 +151,13 @@
               close
               collapse
           >
-            <highcharts :options="lineChart('photoType')"></highcharts>
+            <ChartLine
+                :titleText=formatMonth
+                :accessories="['一般照', '美肌']"
+                :max="1100"
+                :min="0"
+                :showType="'day'"
+            />
           </Widget>
         </div>
       </b-col>
@@ -142,18 +166,15 @@
 </template>
 
 <script>
+import ChartLine from "@/components/Charts/ChartLine";
 import Widget from '@/components/Widget/Widget';
-import { Chart } from 'highcharts-vue';
-import Highcharts from 'highcharts';
-import exporting from 'highcharts/modules/exporting';
-exporting(Highcharts);
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'MonthlyOverview',
   components: {
     Widget,
-    highcharts: Chart
+    ChartLine,
   },
   data() {
     return {
@@ -164,110 +185,6 @@ export default {
   methods: {
     getMonth() {
       this.month = new Date().toJSON().slice(0,7);
-    },
-    getData(seriesCount, accessories, max, min) {
-      const data = [];
-      const year = parseInt(this.formatMonth.toString().substring(0,4));
-      const month = parseInt(this.formatMonth.toString().substring(5,8));
-
-      for (let i = 0; i < seriesCount; i += 1) {
-        let randomData = [];
-        for (let j = 1; j < 31; j++) {
-          randomData.push([
-            Date.UTC(year, month, j), Math.floor(Math.random()*(max-min+1))+min
-          ])
-        }
-
-        data.push({
-          name: accessories[i],
-          data: randomData,
-        });
-      }
-
-      return data;
-    },
-    lineChart(dataType) {
-      let series = [];
-
-      switch (dataType) {
-        case 'dailyRevenue':
-          series = this.getData(1, ['日收入'],200000,10000);
-          break;
-        case 'RevenueSource':
-          series = this.getData(6,['現金', '悠遊卡', '一卡通', 'LinePay', '國泰-信用卡', '國泰-悠遊卡'],1000,0);
-          break;
-        case 'photoSpec':
-          series = this.getData(4,['1 吋', '2 吋', '身份證', '美簽'],1100,0);
-          break;
-        case 'photoType':
-          series = this.getData(2,['一般照', '美肌'],1100,0);
-          break;
-        default:
-      }
-
-      const {inverse, info, primary, danger, warning, success, textColor} = this.appConfig.colors;
-      const chartColors = this.appConfig.colors;
-      const {axisColor} = chartColors;
-
-      return {
-        chart: {
-          type: 'spline',
-          height: 420,
-        },
-        exporting: {
-          buttons: {
-            contextButton: {
-              menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF']
-            }
-          }
-        },
-        title: {
-          text: this.formatMonth,
-          style: {
-            color: textColor
-          }
-        },
-        credits: {
-          enabled: false
-        },
-        xAxis: {
-          type: 'datetime',
-          dateTimeLabelFormats: {
-            day: '%d',
-          },
-          labels: {
-            style: {
-              color: axisColor
-            }
-          }
-        },
-        yAxis: {
-          min: 0,
-          title: {
-            enabled: false,
-          },
-          labels: {
-            style: {
-              color: axisColor
-            }
-          },
-        },
-        legend: {
-          enabled: true,
-        },
-        plotOptions: {
-          series: {
-            lineWidth: 2,
-            shadow: true,
-            marker: {
-              enabled: false,
-              symbol: 'circle',
-            }
-          }
-        },
-        colors: [primary, success, danger, warning, info, inverse],
-        series
-      };
     },
   },
   computed: {
@@ -280,5 +197,3 @@ export default {
   }
 };
 </script>
-
-<style src="./MonthlyOverview.scss" lang="scss" />

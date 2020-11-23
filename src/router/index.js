@@ -89,6 +89,11 @@ const routes = [
             },
         ],
     },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: () => import('@/views/Login/Login')
+    },
 ];
 
 // 升級vue-router至3.1以後版本，導航組件重複點擊報錯 NavigationDuplicated
