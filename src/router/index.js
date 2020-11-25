@@ -87,6 +87,14 @@ const routes = [
                     ]
                 },
             },
+        ],
+    },
+    {
+        path: '/backend',
+        name: 'BackendLayout',
+        redirect: '/backend/admin',
+        component: () => import('@/components/Layout/Layout'),
+        children: [
             {
                 path: 'admin',
                 name: 'BackendAdmin',
@@ -124,7 +132,7 @@ const routes = [
                         }
                     ]
                 },
-            }
+            },
         ],
     },
 ];

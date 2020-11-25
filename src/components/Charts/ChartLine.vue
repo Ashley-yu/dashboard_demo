@@ -68,6 +68,7 @@ export default {
           data.push({
             name: accessories[i],
             data: randomData,
+            visible: false,
           });
         }
       }
@@ -83,9 +84,11 @@ export default {
           data.push({
             name: accessories[i],
             data: randomData,
+            visible: false,
           });
         }
       }
+      data[0].visible = true;
 
       return data;
     },

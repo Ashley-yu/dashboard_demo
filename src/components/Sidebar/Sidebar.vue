@@ -28,19 +28,19 @@
         <NavLink
             :activeItem="activeItem"
             header="人員管理"
-            link="/dashboard/admin"
+            link="/backend/admin"
             iconName="flaticon-user"
             index="admin"
             :childrenLinks="[
-              { header: '後台管理者', link: '/dashboard/admin' },
+              { header: '後台管理者', link: '/backend/admin' },
             ]"
         />
 <!--        <NavLink-->
 <!--            :activeItem="activeItem"-->
 <!--            header="設備管理"-->
-<!--            link="/backend"-->
+<!--            link="/backend/equip"-->
 <!--            iconName="flaticon-server-1"-->
-<!--            index="backend"-->
+<!--            index="equip"-->
 <!--            :childrenLinks="[-->
 <!--              { header: '設備總覽', link: '/backend/equip' },-->
 <!--              { header: '費用類型', link: '/backend/costType' },-->

@@ -9,10 +9,12 @@ import App from './App';
 import layoutMixin from './mixins/layout';
 import Widget from './components/Widget/Widget';
 import VueTouch from 'vue-touch';
+import Trend from 'vuetrend';
 import Datepicker from 'vuejs-datepicker';
 
 Vue.use(BootstrapVue);
 Vue.use(VueTouch);
+Vue.use(Trend);
 Vue.component('Widget', Widget);
 Vue.component('Datepicker', Datepicker);
 Vue.mixin(layoutMixin);

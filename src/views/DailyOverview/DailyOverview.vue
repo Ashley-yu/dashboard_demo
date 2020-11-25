@@ -97,7 +97,7 @@
         <b-col md="6" xl="3" sm="6" xs="12">
           <div class="pb-xlg h-100">
             <Widget
-                class="mb-0"
+                class="h-100 mb-0"
                 title="
                 <h5 class='d-flex align-items-center pb-1'>
                   <span class='circle bg-info mr-sm' style='font-size: 6px'></span>
@@ -106,7 +106,7 @@
                 customHeader
                 close
             >
-              <div class="px-4 d-flex justify-content-between align-items-center mb-sm mt-sm">
+              <div class="px-4 d-flex justify-content-between align-items-center mb-lg mt-sm">
                 <h2>934</h2>
                 <i class="la la-arrow-right text-primary la-lg rotate-315" />
               </div>
@@ -124,7 +124,7 @@
         <b-col md="6" xl="3" sm="6" xs="12">
           <div class="pb-xlg h-100">
             <Widget
-                class="mb-0"
+                class="h-100 mb-0"
                 title="
                 <h5 class='d-flex align-items-center pb-1'>
                   <span class='circle bg-info mr-sm' style='font-size: 6px'></span>
@@ -133,7 +133,7 @@
                 customHeader
                 close
             >
-              <div class="px-4 d-flex justify-content-between align-items-center mb-sm bt-sm">
+              <div class="px-4 d-flex justify-content-between align-items-center mb-lg bt-sm">
                 <h2>96 / 103</h2>
                 <i class="la la-arrow-right text-primary la-lg rotate-315" />
               </div>
@@ -151,7 +151,7 @@
         <b-col md="6" xl="3" sm="6" xs="12">
           <div class="pb-xlg h-100">
             <Widget
-                class="mb-0"
+                class="h-100 mb-0"
                 title="
                 <h5 class='d-flex align-items-center pb-1'>
                   <span class='circle bg-info mr-sm' style='font-size: 6px'></span>
@@ -160,13 +160,61 @@
                 customHeader
                 close
             >
-              <div class="px-4 d-flex justify-content-between align-items-center mb-sm bt-sm">
+              <div class="px-4 d-flex justify-content-between align-items-center mb-lg bt-sm">
                 <h2>8</h2>
                 <i class="la la-arrow-right text-danger la-lg rotate-45" />
               </div>
               <div class="px-4 d-flex flex-wrap justify-content-between">
                 <div class="mt">
                   <h6>0.05%</h6><p class="text-muted mb-0 mr"><small>佔比</small></p>
+                </div>
+              </div>
+            </Widget>
+          </div>
+        </b-col>
+        <b-col md="6" xl="3" sm="6" xs="12">
+          <div class="pb-xlg h-100">
+            <Widget
+                class="h-100 mb-0"
+                title="
+                <h5 class='d-flex align-items-center pb-1'>
+                  <span class='circle bg-info mr-sm' style='font-size: 6px'></span>
+                  <span class='fw-normal ml-xs'>Server Overview</span>
+                </h5>"
+                customHeader
+                close
+            >
+              <div class="d-flex align-items-center mb-sm">
+                <p class="width-150"><small>60% / 37°С / 3.3 Ghz</small></p>
+                <div style="width: calc(100% - 150px)">
+                  <trend
+                      :data="getRandomData()"
+                      :gradient="[appConfig.colors.danger]"
+                      :height="40"
+                      stroke-width="4"
+                      smooth />
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-sm">
+                <p class="width-150"><small>54% / 31°С / 3.3 Ghz</small></p>
+                <div style="width: calc(100% - 150px)">
+                  <trend
+                      :data="getRandomData()"
+                      :gradient="[appConfig.colors.info]"
+                      :height="40"
+                      stroke-width="4"
+                      smooth />
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <p class="width-150"><small>57% / 21°С / 3.3 Ghz</small></p>
+                <div style="width: calc(100% - 150px)">
+                  <trend
+                      :data="getRandomData()"
+                      :gradient="[appConfig.colors.primary]"
+                      :height="40"
+                      stroke-width="4"
+                      smooth />
                 </div>
               </div>
             </Widget>
@@ -247,6 +295,15 @@ export default {
   methods: {
     getDate() {
       this.date = new Date(new Date().setDate(new Date().getDate()-1)).toJSON().slice(0,10);
+    },
+    getRandomData() {
+      const arr = [];
+
+      for (let i = 0; i < 25; i += 1) {
+        arr.push(Math.random().toFixed(1) * 10);
+      }
+
+      return arr;
     },
   },
   computed: {
