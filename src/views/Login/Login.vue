@@ -46,11 +46,8 @@
 </template>
 
 <script>
-import Widget from '@/components/Widget/Widget';
-
 export default {
   name: 'LoginPage',
-  components: { Widget },
   data() {
     return {
       errorMessage: null,

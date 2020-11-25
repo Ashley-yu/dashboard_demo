@@ -167,13 +167,11 @@
 import ChartBar from "@/components/Charts/ChartBar";
 import ChartLine from "@/components/Charts/ChartLine";
 import ChartColumn from "@/components/Charts/ChartColumn";
-import Widget from '@/components/Widget/Widget';
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'YearlyOverview',
   components: {
-    Widget,
     ChartBar,
     ChartLine,
     ChartColumn,

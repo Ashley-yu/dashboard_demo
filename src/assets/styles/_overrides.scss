@@ -57,7 +57,9 @@ legend {
 }
 
 .alert {
-  font-size: $font-size-sm;
+  font-size: $font-size-initial;
+  font-weight: $font-weight-normal;
+  letter-spacing: 0.5px;
 
   .close {
     color: #fff;
@@ -520,7 +522,7 @@ h6,
 
 // Modal
 
-.modal-body {
+.modal-content {
   background: $gray-200;
 }
 

@@ -121,13 +121,11 @@
 <script>
 import ChartBar from "@/components/Charts/ChartBar";
 import ChartStackedColumn from "@/components/Charts/ChartStackedColumn";
-import Widget from '@/components/Widget/Widget';
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'AnnualOverview',
   components: {
-    Widget,
     ChartBar,
     ChartStackedColumn,
   },

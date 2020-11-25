@@ -1,0 +1,23 @@
+@import '../../../assets/styles/app';
+
+.edit-page {
+  form {
+    width: 75%;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+
+    label {
+      text-align: right;
+
+      @include media-breakpoint-down(md) {
+        text-align: left;
+      }
+    }
+
+    input:disabled {
+      background-color: transparent;
+    }
+  }
+}

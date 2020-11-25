@@ -87,12 +87,45 @@ const routes = [
                     ]
                 },
             },
+            {
+                path: 'admin',
+                name: 'BackendAdmin',
+                component: () => import('@/views/BackendAdmin/BackendAdmin'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '首頁',
+                            to: { name: 'Layout' }
+                        },
+                        {
+                            text: '後台管理者',
+                            to: { name: 'BackendAdmin' }
+                        }
+                    ]
+                },
+            },
+            {
+                path: 'admin/create/:id?',
+                name: 'EditUser',
+                component: () => import('@/views/BackendAdmin/EditUser/EditUser'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '首頁',
+                            to: { name: 'Layout' }
+                        },
+                        {
+                            text: '後台管理者',
+                            to: { name: 'BackendAdmin' }
+                        },
+                        {
+                            text: '新增後台管理者',
+                            to: { name: 'EditUser' }
+                        }
+                    ]
+                },
+            }
         ],
-    },
-    {
-        path: '/admin',
-        name: 'Admin',
-        component: () => import('@/views/Login/Login')
     },
 ];
 

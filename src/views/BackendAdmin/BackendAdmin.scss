@@ -1,0 +1,39 @@
+@import '../../assets/styles/app';
+
+.admin-page {
+  .requests-table {
+    td, th {
+      font-weight: $font-weight-normal;
+    }
+
+    tbody tr {
+      td {
+        min-width: 100px;
+      }
+    }
+  }
+
+  .form-group {
+    width: 200px;
+    margin-bottom: 0;
+
+    .input-group-prepend {
+      margin-right: 0;
+    }
+
+    .input-group-text {
+      border: none;
+      background-color: rgba(0,0,0,0.1);
+      transition: background-color ease-in-out 0.15s;
+    }
+
+    input, input:focus {
+      background: rgba(0, 0, 0, 0.1);;
+      border: none;
+    }
+  }
+}
+
+.modal-icon {
+  font-size: 8rem;
+}

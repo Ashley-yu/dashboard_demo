@@ -167,13 +167,11 @@
 
 <script>
 import ChartLine from "@/components/Charts/ChartLine";
-import Widget from '@/components/Widget/Widget';
 import {zh} from 'vuejs-datepicker/dist/locale';
 
 export default {
   name: 'MonthlyOverview',
   components: {
-    Widget,
     ChartLine,
   },
   data() {
