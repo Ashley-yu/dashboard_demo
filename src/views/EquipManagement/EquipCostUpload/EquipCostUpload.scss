@@ -1,6 +1,6 @@
-@import '../../assets/styles/app';
+@import '../../../assets/styles/app';
 
-.admin-page {
+.import-equip-cost-page {
   .requests-table {
     td, th {
       font-weight: $font-weight-normal;
@@ -12,9 +12,14 @@
       }
     }
 
+    .td-index {
+      min-width: 45px;
+    }
+
     .td-action {
       min-width: 200px;
     }
+
   }
 
   .form-group {
@@ -39,8 +44,4 @@
       border: none;
     }
   }
-}
-
-.modal-icon {
-  font-size: 8rem;
 }

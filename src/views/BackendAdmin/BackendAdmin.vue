@@ -153,6 +153,7 @@ export default {
         {
           key: 'actions',
           label: '動作',
+          tdClass: 'td-action'
         },
       ],
       transProps: {

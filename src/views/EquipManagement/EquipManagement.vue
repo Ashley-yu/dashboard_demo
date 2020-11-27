@@ -1,10 +1,10 @@
 <template>
-  <div class="admin-page">
+  <div class="equip-page">
     <h1 class="page-title">設備總覽</h1>
     <div class="pb-xlg h-100">
       <Widget class="mb-0">
         <div class="d-flex">
-          <b-button variant="dark">
+          <b-button variant="dark" @click.prevent="$router.push('equip/import')">
             <i class="fa fa-upload mr-1"/>
             匯入設定費用
           </b-button>
@@ -45,6 +45,7 @@
         </b-row>
         <div class="table-responsive">
           <b-table
+              class="table-lg mb-0 requests-table"
               striped
               hover
               :filter="filter"
@@ -64,32 +65,32 @@
               </b-button>
             </template>
             <template #cell(actions)="data">
-              <b-button class="mr-1"
+              <b-button class="mr-1 my-1"
                         variant="dark"
               >
                 <i class="fa fa-pencil mr-1"/>
                 編輯
               </b-button>
-              <b-button class="mr-1"
+              <b-button class="mr-1 my-1"
                         variant="dark"
                         v-if="data.item.status"
               >
                 <i class="fa fa-minus-circle mr-1"/>
                 停用
               </b-button>
-              <b-button class="mr-1"
+              <b-button class="mr-1 my-1"
                         variant="dark"
                         v-else
               >
                 <i class="fa fa-check-circle mr-1"/>
                 啟用
               </b-button>
-              <b-button class="mr-1"
+              <b-button class="mr-1 my-1"
                         variant="default">
                 <i class="fa fa-cog mr-1"/>
                 設定費用
               </b-button>
-              <b-button class="mr-1"
+              <b-button class="mr-1 my-1"
                         variant="default"
               >
                 <i class="fa fa-refresh mr-1"/>
@@ -121,7 +122,7 @@ export default {
   name: "EquipManagement",
   data() {
     return {
-      filter: "",
+      filter: '',
       perPage: 10,
       currentPage: 1,
       fields: [
@@ -150,6 +151,7 @@ export default {
         {
           key: 'actions',
           label: '動作',
+          tdClass: 'td-action'
         }
       ],
       data: [
@@ -254,24 +256,4 @@ export default {
 }
 </script>
 
-<style scoped type="scss">
-.form-group {
-  width: 100%;
-  margin-bottom: 0;
-
-  .input-group-prepend {
-    margin-right: 0;
-  }
-
-  .input-group-text {
-    border: none;
-    background-color: rgba(0,0,0,0.1);
-    transition: background-color ease-in-out 0.15s;
-  }
-
-  input, input:focus {
-    background: rgba(0, 0, 0, 0.1);;
-    border: none;
-  }
-}
-</style>
+<style src="./EquipManagement.scss" lang="scss" />

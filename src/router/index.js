@@ -150,6 +150,27 @@ const routes = [
                     ]
                 },
             },
+            {
+                path: 'equip/import',
+                name: 'EquipCostUpload',
+                component: () => import('@/views/EquipManagement/EquipCostUpload/EquipCostUpload'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '設備管理',
+                            to: { name: 'EquipManagement' }
+                        },
+                        {
+                            text: '設備總覽',
+                            to: { name: 'EquipManagement' }
+                        },
+                        {
+                            text: '費用匯入',
+                            to: { name: 'EquipCostUpload' }
+                        }
+                    ]
+                },
+            },
         ],
     },
 ];

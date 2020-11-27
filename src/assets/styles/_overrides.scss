@@ -486,6 +486,17 @@ small {
   }
 }
 
+////////// Form File Input //////////
+
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: '請選擇檔案';
+  cursor: pointer;
+}
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: $gray-400;
+  box-shadow: none;
+}
+
 ////////// Headings //////////
 
 h1,

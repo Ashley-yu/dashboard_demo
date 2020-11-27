@@ -1,6 +1,6 @@
 @import '../../assets/styles/app';
 
-.admin-page {
+.equip-page {
   .requests-table {
     td, th {
       font-weight: $font-weight-normal;
@@ -13,8 +13,9 @@
     }
 
     .td-action {
-      min-width: 200px;
+      min-width: 280px;
     }
+
   }
 
   .form-group {
