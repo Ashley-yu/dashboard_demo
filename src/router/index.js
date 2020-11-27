@@ -26,7 +26,7 @@ const routes = [
                 meta: {
                     breadcrumb: [
                         {
-                            text: '首頁',
+                            text: '營運分析',
                             to: { name: 'Layout' }
                         },
                         {
@@ -43,7 +43,7 @@ const routes = [
                 meta: {
                     breadcrumb: [
                         {
-                            text: '首頁',
+                            text: '營運分析',
                             to: { name: 'Layout' }
                         },
                         {
@@ -60,7 +60,7 @@ const routes = [
                 meta: {
                     breadcrumb: [
                         {
-                            text: '首頁',
+                            text: '營運分析',
                             to: { name: 'Layout' }
                         },
                         {
@@ -77,7 +77,7 @@ const routes = [
                 meta: {
                     breadcrumb: [
                         {
-                            text: '首頁',
+                            text: '營運分析',
                             to: { name: 'Layout' }
                         },
                         {
@@ -102,8 +102,8 @@ const routes = [
                 meta: {
                     breadcrumb: [
                         {
-                            text: '首頁',
-                            to: { name: 'Layout' }
+                            text: '人員管理',
+                            to: { name: 'BackendLayout' }
                         },
                         {
                             text: '後台管理者',
@@ -119,8 +119,8 @@ const routes = [
                 meta: {
                     breadcrumb: [
                         {
-                            text: '首頁',
-                            to: { name: 'Layout' }
+                            text: '人員管理',
+                            to: { name: 'BackendLayout' }
                         },
                         {
                             text: '後台管理者',
@@ -129,6 +129,23 @@ const routes = [
                         {
                             text: '新增後台管理者',
                             to: { name: 'EditUser' }
+                        }
+                    ]
+                },
+            },
+            {
+                path: 'equip',
+                name: 'EquipManagement',
+                component: () => import('@/views/EquipManagement/EquipManagement'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '設備管理',
+                            to: { name: 'EquipManagement' }
+                        },
+                        {
+                            text: '設備總覽',
+                            to: { name: 'EquipManagement' }
                         }
                     ]
                 },

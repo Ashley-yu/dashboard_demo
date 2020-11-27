@@ -118,10 +118,10 @@ export default {
 
       if (this.editItemId) {
         this.updateUserData(this.item);
-        this.toPage('/dashboard/admin');
+        this.toPage('/backend/admin');
       } else {
         this.addUserData(this.item);
-        this.toPage('/dashboard/admin');
+        this.toPage('/backend/admin');
       }
     },
   },

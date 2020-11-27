@@ -35,20 +35,20 @@
               { header: '後台管理者', link: '/backend/admin' },
             ]"
         />
-<!--        <NavLink-->
-<!--            :activeItem="activeItem"-->
-<!--            header="設備管理"-->
-<!--            link="/backend/equip"-->
-<!--            iconName="flaticon-server-1"-->
-<!--            index="equip"-->
-<!--            :childrenLinks="[-->
-<!--              { header: '設備總覽', link: '/backend/equip' },-->
-<!--              { header: '費用類型', link: '/backend/costType' },-->
-<!--              { header: '網路回應檢查', link: '/backend/network' },-->
-<!--              { header: '底片剩餘數量', link: '/backend/remaining' },-->
-<!--              { header: '回傳錯誤代碼', link: '/backend/errors' },-->
-<!--            ]"-->
-<!--        />-->
+        <NavLink
+            :activeItem="activeItem"
+            header="設備管理"
+            link="/backend/equip"
+            iconName="flaticon-server-1"
+            index="equip"
+            :childrenLinks="[
+              { header: '設備總覽', link: '/backend/equip' },
+              // { header: '費用類型', link: '/backend/costType' },
+              // { header: '網路回應檢查', link: '/backend/network' },
+              // { header: '底片剩餘數量', link: '/backend/remaining' },
+              // { header: '回傳錯誤代碼', link: '/backend/errors' },
+            ]"
+        />
 <!--        <NavLink-->
 <!--            :activeItem="activeItem"-->
 <!--            header="報表管理"-->

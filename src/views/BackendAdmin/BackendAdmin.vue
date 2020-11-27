@@ -3,71 +3,66 @@
     <h1 class="page-title">後台管理者</h1>
     <div class="pb-xlg h-100">
       <Widget class="mb-0">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <b-form>
-            <b-form-group>
-              <b-input-group class="input-group-no-border">
-                <template v-slot:prepend>
-                  <b-input-group-text><i class="la la-search"/></b-input-group-text>
-                </template>
-                <b-form-input
-                    id="search-input"
-                    placeholder="Search"
-                    v-model="searchQuery"
-                    autocomplete="off"
-                />
-              </b-input-group>
-            </b-form-group>
-          </b-form>
-          <b-button variant="success" @click.prevent="toEditPage(true)">
-            <i class="fa fa-plus"/>
-          </b-button>
-        </div>
+        <b-row class="mb-3" align-h="between">
+          <b-col sm="6">
+            <b-form>
+              <b-form-group>
+                <b-input-group class="input-group-no-border">
+                  <template v-slot:prepend>
+                    <b-input-group-text><i class="la la-search"/></b-input-group-text>
+                  </template>
+                  <b-form-input
+                      id="filterInput"
+                      type="search"
+                      placeholder="Search"
+                      v-model="filter"
+                      autocomplete="off"
+                  />
+                </b-input-group>
+              </b-form-group>
+            </b-form>
+          </b-col>
+          <b-col class="text-sm-right mt-1 mt-sm-0" sm="3">
+            <b-button class="" variant="success" @click.prevent="toEditPage(true)">
+              <i class="fa fa-plus mr-1"/>
+              新增
+            </b-button>
+          </b-col>
+        </b-row>
         <div class="table-responsive">
-          <table class="table table-striped table-lg mb-0 requests-table">
-            <thead>
-            <tr class="text-muted">
-              <th>#</th>
-              <th>帳號</th>
-              <th>電子郵件</th>
-              <th>狀態</th>
-              <th>建立日期</th>
-              <th>更新日期</th>
-              <th>動作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr
-                v-for="row in filterData"
-                :key="row.id"
-            >
-              <td>{{row.id}}</td>
-              <td>{{row.name}}</td>
-              <td>{{row.email}}</td>
-              <td class="text-left">
-                <i :class="`fa fa-circle text-${row.status ? 'success' : 'danger'}`" />
-              </td>
-              <td>{{row.create}}</td>
-              <td>{{row.update}}</td>
-              <td>
-                <b-button-group>
-                  <b-button variant="warning" @click.prevent="toEditPage(false, row.id)">
-                    <i class="fa fa-pencil"/>
-                  </b-button>
-                  <b-button variant="danger" @click.prevent="confirmDisable(row.id)">
-                    <i class="fa fa-minus-circle"/>
-                  </b-button>
-                </b-button-group>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-
+          <b-table
+              class="table-lg mb-0 requests-table"
+              striped
+              hover
+              :filter="filter"
+              :fields="fields"
+              :items="userData"
+              :per-page="perPage"
+              :current-page="currentPage"
+          >
+            <template #cell(index)="data">
+              {{ data.index + 1 }}
+            </template>
+            <template #cell(status)="data">
+              <i :class="`fa fa-circle text-${data.item.status ? 'success' : 'danger'}`" />
+            </template>
+            <template v-slot:cell(actions)="data">
+              <b-button-group>
+                <b-button variant="warning" @click.prevent="toEditPage(false, data.item.id)">
+                  <i class="fa fa-pencil"/>
+                </b-button>
+                <b-button variant="danger" @click.prevent="confirmDisable(data.item.id)">
+                  <i class="fa fa-minus-circle"/>
+                </b-button>
+              </b-button-group>
+            </template>
+          </b-table>
         </div>
         <b-pagination
             v-model="currentPage"
             :total-rows="rows"
             :per-page="perPage"
+            aria-controls="my-table"
             align="right"
         ></b-pagination>
       </Widget>
@@ -98,10 +93,46 @@ export default {
   name: "BackendAdmin",
   data() {
     return {
-      searchQuery: '',
+      filter: '',
+      fields: [
+        {
+          key: 'index',
+          label: '#',
+        },
+        {
+          key: 'name',
+          label: '帳號',
+          sortable: true,
+        },
+        {
+          key: 'email',
+          label: '電子郵件',
+        },
+        {
+          key: 'status',
+          label: '狀態',
+          sortable: true,
+        },
+        {
+          key: 'create',
+          label: '建立日期',
+          sortable: true,
+        },
+        {
+          key: 'update',
+          label: '更新日期',
+          sortable: true,
+        },
+        {
+          key: 'actions',
+          label: '動作',
+        },
+      ],
+      transProps: {
+        name: 'flip-list'
+      },
       currentPage: 1,
-      perPage: 1,
-      rows: 1,
+      perPage: 10,
       updateId: '',
     }
   },
@@ -134,15 +165,8 @@ export default {
   },
   computed: {
     ...mapState(["userData"]),
-    filterData() {
-      if (this.searchQuery) {
-        return this.userData.filter( item => {
-          return Object.keys(item).some(key => {
-            return String(item[key]).toLowerCase().indexOf(this.searchQuery) > -1;
-          })
-        })
-      }
-      return this.userData;
+    rows() {
+      return this.userData.length;
     },
   },
 }
