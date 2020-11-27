@@ -23,7 +23,7 @@
             </b-form>
           </b-col>
           <b-col class="text-sm-right mt-1 mt-sm-0" sm="3">
-            <b-button class="" variant="success" @click.prevent="toEditPage(true)">
+            <b-button class="" variant="primary" @click.prevent="toEditPage(true)">
               <i class="fa fa-plus mr-1"/>
               新增
             </b-button>
@@ -51,8 +51,17 @@
                 <b-button variant="warning" @click.prevent="toEditPage(false, data.item.id)">
                   <i class="fa fa-pencil"/>
                 </b-button>
-                <b-button variant="danger" @click.prevent="confirmDisable(data.item.id)">
+                <b-button variant="danger"
+                          @click.prevent="confirmDisable(data.item.id, true)"
+                          v-if="data.item.status"
+                >
                   <i class="fa fa-minus-circle"/>
+                </b-button>
+                <b-button variant="success"
+                          @click.prevent="confirmDisable(data.item.id, false)"
+                          v-else
+                >
+                  <i class="fa fa-check-circle"/>
                 </b-button>
               </b-button-group>
             </template>
@@ -75,11 +84,25 @@
     >
       <div class="d-block text-center">
         <i class="modal-icon fa fa-exclamation-circle text-warning mb-3"/>
-        <h3 class="mb-5">確認停用嗎?</h3>
+        <h3 class="mb-5" v-if="isDisable">確認停用嗎?</h3>
+        <h3 class="mb-5" v-else>確認啟用嗎?</h3>
       </div>
       <div class="text-center">
         <b-button variant="default" @click.prevent="hideModal('modal-disable')">取消</b-button>
-        <b-button class="ml-3" variant="info" @click.prevent="updateStatus()">停用</b-button>
+        <b-button class="ml-3"
+                  variant="info"
+                  @click.prevent="updateStatus()"
+                  v-if="isDisable"
+        >
+          停用
+        </b-button>
+        <b-button class="ml-3"
+                  variant="info"
+                  @click.prevent="updateStatus()"
+                  v-else
+        >
+          啟用
+        </b-button>
       </div>
     </b-modal>
   </div>
@@ -134,6 +157,7 @@ export default {
       currentPage: 1,
       perPage: 10,
       updateId: '',
+      isDisable: '',
     }
   },
   methods: {
@@ -154,7 +178,8 @@ export default {
         this.toPage('admin/create');
       }
     },
-    confirmDisable(itemId) {
+    confirmDisable(itemId, status) {
+      this.isDisable = status;
       this.showModal('modal-disable');
       this.updateId = itemId;
     },

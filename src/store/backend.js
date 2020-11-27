@@ -6,7 +6,7 @@ export default {
         id: 1,
         name: 'MarkOtto',
         email: 'ottoto@wxample.com',
-        status: 1,
+        status: true,
         create: '2020-11-23 09:09:09',
         update: '',
       },
@@ -14,7 +14,7 @@ export default {
         id: 2,
         name: 'JacobThornton',
         email: 'thornton@wxample.com',
-        status: 1,
+        status: true,
         create: '2020-11-23 13:33:20',
         update: '',
       },
@@ -22,7 +22,7 @@ export default {
         id: 3,
         name: 'admin',
         email: 'bird@wxample.com',
-        status: 0,
+        status: false,
         create: '2020-11-23 15:03:18',
         update: '2020-11-24 11:28:03',
       }
@@ -35,7 +35,7 @@ export default {
         date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
         value.id = Math.max(...state.userData.map(item => item.id)) + 1;
-        value.status = 1;
+        value.status = true;
         value.create = date;
       }
       state.userData.push(value);
@@ -52,7 +52,7 @@ export default {
       date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
       state.userData[id - 1].update = date;
-      state.userData[id - 1].status = 0;
+      state.userData[id - 1].status = !state.userData[id - 1].status;
     },
   },
   actions: {
