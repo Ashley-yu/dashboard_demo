@@ -1,6 +1,7 @@
 <template>
   <div class="edit-page">
-    <h1 class="page-title">新增後台管理者</h1>
+    <h1 class="page-title" v-if="!editItemId">新增後台管理者</h1>
+    <h1 class="page-title" v-else>編輯後台管理者</h1>
     <div class="pb-xlg h-100">
       <Widget class="mb-0">
         <b-alert class="alert-sm text-center" variant="danger" :show="!!errorMessage">
@@ -75,7 +76,7 @@
               <b-button variant="default" @click.prevent="$router.go(-1)">
                 取消
               </b-button>
-              <b-button class="ml-3" variant="info" type="submit">
+              <b-button class="ml-3" variant="primary" type="submit">
                 儲存
               </b-button>
             </div>

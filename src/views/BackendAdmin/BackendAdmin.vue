@@ -3,7 +3,7 @@
     <h1 class="page-title">後台管理者</h1>
     <div class="pb-xlg h-100">
       <Widget class="mb-0">
-        <b-row class="mb-3" align-h="between">
+        <b-row class="mb-3 mt-2" align-h="between">
           <b-col sm="6">
             <b-form>
               <b-form-group>
@@ -23,7 +23,7 @@
             </b-form>
           </b-col>
           <b-col class="text-sm-right mt-1 mt-sm-0" sm="3">
-            <b-button class="" variant="primary" @click.prevent="toEditPage(true)">
+            <b-button variant="dark" @click.prevent="toEditPage(true)">
               <i class="fa fa-plus mr-1"/>
               新增
             </b-button>
@@ -47,23 +47,27 @@
               <i :class="`fa fa-circle text-${data.item.status ? 'success' : 'danger'}`" />
             </template>
             <template v-slot:cell(actions)="data">
-              <b-button-group>
-                <b-button variant="warning" @click.prevent="toEditPage(false, data.item.id)">
-                  <i class="fa fa-pencil"/>
-                </b-button>
-                <b-button variant="danger"
-                          @click.prevent="confirmDisable(data.item.id, true)"
-                          v-if="data.item.status"
-                >
-                  <i class="fa fa-minus-circle"/>
-                </b-button>
-                <b-button variant="success"
-                          @click.prevent="confirmDisable(data.item.id, false)"
-                          v-else
-                >
-                  <i class="fa fa-check-circle"/>
-                </b-button>
-              </b-button-group>
+              <b-button class="mr-1"
+                        variant="dark"
+                        @click.prevent="toEditPage(false, data.item.id)"
+              >
+                <i class="fa fa-pencil mr-1"/>
+                編輯
+              </b-button>
+              <b-button variant="dark"
+                        @click.prevent="confirmDisable(data.item.id, true)"
+                        v-if="data.item.status"
+              >
+                <i class="fa fa-minus-circle mr-1"/>
+                停用
+              </b-button>
+              <b-button variant="dark"
+                        @click.prevent="confirmDisable(data.item.id, false)"
+                        v-else
+              >
+                <i class="fa fa-check-circle mr-1"/>
+                啟用
+              </b-button>
             </template>
           </b-table>
         </div>
@@ -90,14 +94,14 @@
       <div class="text-center">
         <b-button variant="default" @click.prevent="hideModal('modal-disable')">取消</b-button>
         <b-button class="ml-3"
-                  variant="info"
+                  variant="primary"
                   @click.prevent="updateStatus()"
                   v-if="isDisable"
         >
           停用
         </b-button>
         <b-button class="ml-3"
-                  variant="info"
+                  variant="primary"
                   @click.prevent="updateStatus()"
                   v-else
         >
@@ -158,6 +162,7 @@ export default {
       perPage: 10,
       updateId: '',
       isDisable: '',
+      message: '',
     }
   },
   methods: {
@@ -170,6 +175,28 @@ export default {
     },
     toPage(path) {
       this.$router.push(path);
+    },
+    showNotification() {
+      this.$toasted.success(this.message, {
+        action: {
+          text: 'X',
+          onClick: (e, toastObject) => {
+            toastObject.goAway(0);
+          }
+        }
+      })
+    },
+    showErrorNotification() {
+      this.$toasted.error(this.message, {
+        action: [
+          {
+            text: 'X',
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0);
+            }
+          }
+        ]
+      });
     },
     toEditPage(isNew, itemId) {
       if (!isNew) {
@@ -186,6 +213,8 @@ export default {
     updateStatus() {
       this.disableUserData(this.updateId);
       this.hideModal('modal-disable');
+      this.message = "帳號狀態已變更";
+      this.showNotification();
     },
   },
   computed: {

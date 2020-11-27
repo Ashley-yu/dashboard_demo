@@ -127,7 +127,7 @@ const routes = [
                             to: { name: 'BackendAdmin' }
                         },
                         {
-                            text: '新增後台管理者',
+                            text: '新增/編輯後台管理者',
                             to: { name: 'EditUser' }
                         }
                     ]
