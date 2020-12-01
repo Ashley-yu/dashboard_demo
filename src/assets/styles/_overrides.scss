@@ -716,9 +716,11 @@ pre {
 
 ////// VUE TOASTED //////
 .toasted-container {
-  .toasted {
+  .toasted.toasted-primary {
     box-shadow: none;
-    font-size: $font-size-sm;
+    font-size: $font-size-initial;
+    font-weight: $font-weight-normal;
+    letter-spacing: 0.5px;
     border-radius: $border-radius;
 
     &.default {

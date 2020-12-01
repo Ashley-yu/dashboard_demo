@@ -174,6 +174,7 @@ export default {
     uploadFile() {
       this.message = '上傳成功！';
       this.showNotification();
+      this.file = null;
     },
   },
   computed: {
