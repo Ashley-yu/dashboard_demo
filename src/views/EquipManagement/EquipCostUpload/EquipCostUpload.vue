@@ -145,12 +145,36 @@ export default {
           uploadDate: "2019-01-21 16:41:50",
         },
       ],
+      message: '',
     }
   },
   methods: {
+    showNotification() {
+      this.$toasted.success(this.message, {
+        action: {
+          text: 'X',
+          onClick: (e, toastObject) => {
+            toastObject.goAway(0);
+          }
+        }
+      })
+    },
+    showErrorNotification() {
+      this.$toasted.error(this.message, {
+        action: [
+          {
+            text: 'X',
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0);
+            }
+          }
+        ]
+      });
+    },
     uploadFile() {
-
-    }
+      this.message = '上傳成功！';
+      this.showNotification();
+    },
   },
   computed: {
     rows() {

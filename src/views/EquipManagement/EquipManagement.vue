@@ -96,12 +96,6 @@
                 <i class="fa fa-refresh mr-1"/>
                 開機中
               </b-button>
-<!--              <b-button class="mr-1"-->
-<!--                        variant="danger"-->
-<!--                        @click="deleteItem(data.item.id)"-->
-<!--              >-->
-<!--                Delete-->
-<!--              </b-button>-->
             </template>
           </b-table>
         </div>
@@ -241,12 +235,6 @@ export default {
         },
       ],
     };
-  },
-  methods: {
-    deleteItem(id) {
-      const index = this.data.map(item => item.id).indexOf(id);
-      this.data.splice(index, 1);
-    },
   },
   computed: {
     rows() {
