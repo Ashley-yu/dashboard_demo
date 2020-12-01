@@ -279,6 +279,7 @@
 import ChartDonut from "@/components/Charts/ChartDonut";
 import Widget from '@/components/Widget/Widget';
 import {zh} from 'vuejs-datepicker/dist/locale';
+import moment from 'moment';
 
 export default {
   name: 'DailyOverview',
@@ -308,7 +309,7 @@ export default {
   },
   computed: {
     formatDate() {
-      return new Date(this.date).toJSON().slice(0,10);
+      return moment(this.date).format('YYYY-MM-DD');
     },
   },
   created() {

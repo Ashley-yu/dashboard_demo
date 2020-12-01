@@ -122,6 +122,7 @@
 import ChartBar from "@/components/Charts/ChartBar";
 import ChartStackedColumn from "@/components/Charts/ChartStackedColumn";
 import {zh} from 'vuejs-datepicker/dist/locale';
+import moment from 'moment';
 
 export default {
   name: 'AnnualOverview',
@@ -144,10 +145,10 @@ export default {
   },
   computed: {
     formatYearFrom() {
-      return new Date(this.yearFrom).toJSON().slice(0,4);
+      return moment(this.yearFrom).format('YYYY');
     },
     formatYearTo() {
-      return new Date(this.yearTo).toJSON().slice(0,4);
+      return moment(this.yearTo).format('YYYY');
     },
     titleText() {
       return `${this.formatYearFrom}~${this.formatYearTo}`;

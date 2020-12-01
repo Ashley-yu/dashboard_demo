@@ -173,6 +173,31 @@ const routes = [
             },
         ],
     },
+    {
+        path: '/source',
+        name: 'SourceLayout',
+        redirect: '/source/cash',
+        component: () => import('@/components/Layout/Layout'),
+        children: [
+            {
+                path: 'cash',
+                name: 'SourceCash',
+                component: () => import('@/views/SourceCash/SourceCash'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '收入來源',
+                            to: { name: 'SourceLayout' }
+                        },
+                        {
+                            text: '現金',
+                            to: { name: 'SourceCash' }
+                        }
+                    ]
+                },
+            },
+        ],
+    },
 ];
 
 // 升級vue-router至3.1以後版本，導航組件重複點擊報錯 NavigationDuplicated

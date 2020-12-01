@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default {
   namespaced: true,
   state: {
@@ -31,27 +33,18 @@ export default {
   mutations: {
     addUserData(state, value) {
       if (state.userData.length > 0) {
-        let date = new Date(Date.now());
-        date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-
         value.id = Math.max(...state.userData.map(item => item.id)) + 1;
         value.status = true;
-        value.create = date;
+        value.create = moment().format('YYYY-MM-DD hh:mm:ss');
       }
       state.userData.push(value);
     },
     updateUserData(state, item) {
-      let date = new Date(Date.now());
-      date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-
-      item.update = date;
+      item.update = moment().format('YYYY-MM-DD hh:mm:ss');
       state.userData[item.id - 1] = item;
     },
     disableUserData(state, id) {
-      let date = new Date(Date.now());
-      date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-
-      state.userData[id - 1].update = date;
+      state.userData[id - 1].update = moment().format('YYYY-MM-DD hh:mm:ss');
       state.userData[id - 1].status = !state.userData[id - 1].status;
     },
   },

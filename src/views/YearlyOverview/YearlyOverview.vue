@@ -168,6 +168,7 @@ import ChartBar from "@/components/Charts/ChartBar";
 import ChartLine from "@/components/Charts/ChartLine";
 import ChartColumn from "@/components/Charts/ChartColumn";
 import {zh} from 'vuejs-datepicker/dist/locale';
+import moment from 'moment';
 
 export default {
   name: 'YearlyOverview',
@@ -189,7 +190,7 @@ export default {
   },
   computed: {
     formatYear() {
-      return new Date(this.year).toJSON().slice(0,4);
+      return moment(this.year).format('YYYY');
     },
   },
   created() {

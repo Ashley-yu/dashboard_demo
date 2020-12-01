@@ -813,6 +813,10 @@ pre {
       &.highlighted {
         background-color: rgba(map-get($theme-colors, 'info'), 0.2);
 
+        &.highlight-end,
+        &.highlight-start {
+          background-color: rgba(map-get($theme-colors, 'info'), 0.5);
+        }
       }
     }
   }

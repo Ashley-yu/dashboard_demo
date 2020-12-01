@@ -60,21 +60,21 @@
 <!--              { header: '今日回傳報表', link: '/report/examine' },-->
 <!--            ]"-->
 <!--        />-->
-<!--        <NavLink-->
-<!--            :activeItem="activeItem"-->
-<!--            header="收入來源"-->
-<!--            link="/source"-->
-<!--            iconName="flaticon-id-card-5"-->
-<!--            index="source"-->
-<!--            :childrenLinks="[-->
-<!--              { header: '現金', link: '/report/cash' },-->
-<!--              { header: '悠遊卡', link: '/report/easy_card' },-->
-<!--              { header: '一卡通', link: '/report/ipass' },-->
-<!--              { header: '國泰-信用卡', link: '/report/cathy_credit_card' },-->
-<!--              { header: '國泰-悠遊卡', link: '/report/cathy_easy_card' },-->
-<!--              { header: 'LinePay', link: '/report/line_pay' },-->
-<!--            ]"-->
-<!--        />-->
+        <NavLink
+            :activeItem="activeItem"
+            header="收入來源"
+            link="/source/cash"
+            iconName="flaticon-id-card-5"
+            index="source"
+            :childrenLinks="[
+              { header: '現金', link: '/source/cash' },
+              // { header: '悠遊卡', link: '/report/easy_card' },
+              // { header: '一卡通', link: '/report/ipass' },
+              // { header: '國泰-信用卡', link: '/report/cathy_credit_card' },
+              // { header: '國泰-悠遊卡', link: '/report/cathy_easy_card' },
+              // { header: 'LinePay', link: '/report/line_pay' },
+            ]"
+        />
 <!--        <NavLink-->
 <!--            :activeItem="activeItem"-->
 <!--            header="發票查詢"-->

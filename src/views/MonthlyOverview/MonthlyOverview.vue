@@ -168,6 +168,7 @@
 <script>
 import ChartLine from "@/components/Charts/ChartLine";
 import {zh} from 'vuejs-datepicker/dist/locale';
+import moment from 'moment';
 
 export default {
   name: 'MonthlyOverview',
@@ -187,7 +188,7 @@ export default {
   },
   computed: {
     formatMonth() {
-      return new Date(this.month).toJSON().slice(0,7);
+      return moment(this.month).format('YYYY-MM');
     },
   },
   created() {
