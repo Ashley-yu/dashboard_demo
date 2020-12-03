@@ -53,6 +53,7 @@
               :items="data"
               :per-page="perPage"
               :current-page="currentPage"
+              @row-clicked="expandAdditionalInfo"
           >
             <template #cell(index)="data">
               {{ data.index + 1 }}
@@ -63,6 +64,24 @@
               >
                 明細
               </b-button>
+            </template>
+            <template slot="row-details" slot-scope="row">
+              <b-card>
+                <b-row class="mb-2">
+                  <b-col sm="2" class="text-sm-right">
+                    <b>地址:</b>
+                  </b-col>
+                  <b-col sm="2">
+                    {{ row.item.address }}
+                  </b-col>
+                  <b-col sm="2" class="text-sm-right">
+                    <b>數量:</b>
+                  </b-col>
+                  <b-col sm="2">
+                    {{ row.item.number }}
+                  </b-col>
+                </b-row>
+              </b-card>
             </template>
             <template #cell(actions)="data">
               <b-button class="mr-1 my-1"
@@ -154,87 +173,128 @@ export default {
           equipId: "ABC200",
           status: true,
           equipName: "xiny adam",
+          address: "新北市",
+          number: 30,
           createDate: "2020-01-10 09:38:08",
+          _showDetails: false,
         },
         {
           id: 2,
           equipId: "ABC184",
           status: true,
           equipName: "songshan huzheng",
+          address: "新北市",
+          number: 30,
           createDate: "2020-01-09 01:03:45",
+          _showDetails: false,
         },
         {
           id: 3,
           equipId: "ABC025",
           status: true,
           equipName: "zhonghe fuxing",
+          address: "新北市",
+          number: 30,
           createDate: "2020-01-07 01:00:24",
+          _showDetails: false,
         },
         {
           id: 4,
           equipId: "ABC426",
           status: true,
           equipName: "hong shulin",
+          address: "基隆市",
+          number: 30,
           createDate: "2020-01-04 01:06:55",
+          _showDetails: false,
         },
         {
           id: 5,
           equipId: "ABC145",
           status: true,
           equipName: "trade building",
+          address: "基隆市",
+          number: 30,
           createDate: "2020-01-04 01:02:42",
+          _showDetails: false,
         },
         {
           id: 6,
           equipId: "ABC020",
           status: true,
           equipName: "yingge huzheng",
+          address: "基隆市",
+          number: 30,
           createDate: "2020-01-04 01:00:11",
+          _showDetails: false,
         },
         {
           id: 7,
           equipId: "ABC305",
           status: true,
           equipName: "taidian dalou",
+          address: "宜蘭縣",
+          number: 30,
           createDate: "2020-01-03 01:04:48",
+          _showDetails: false,
         },
         {
           id: 8,
           equipId: "ABC176",
           status: true,
           equipName: "guting yushan",
+          address: "宜蘭縣",
+          number: 30,
           createDate: "2020-01-03 01:02:41",
+          _showDetails: false,
         },
         {
           id: 9,
           equipId: "ABC461",
           status: false,
           equipName: "datong baoya",
+          address: "宜蘭縣",
+          number: 30,
           createDate: "2019-12-31 01:07:05",
+          _showDetails: false,
         },
         {
           id: 10,
           equipId: "ABC344",
           status: false,
           equipName: "dongming baoya",
+          address: "宜蘭縣",
+          number: 30,
           createDate: "2019-12-31 01:05:39",
+          _showDetails: false,
         },
         {
           id: 11,
           equipId: "ABC071",
           status: false,
           equipName: "xinghou family",
+          address: "桃園市",
+          number: 30,
           createDate: "2019-12-31 01:01:14",
+          _showDetails: false,
         },
         {
           id: 12,
           equipId: "ABC168",
           status: false,
           equipName: "gong guag",
-          createDate: "\t2019-12-28 01:02:32",
+          address: "桃園市",
+          number: 30,
+          createDate: "2019-12-28 01:02:32",
+          _showDetails: false,
         },
       ],
     };
+  },
+  methods: {
+    expandAdditionalInfo(row) {
+      row._showDetails = !row._showDetails;
+    }
   },
   computed: {
     rows() {

@@ -7,6 +7,11 @@
     }
 
     tbody tr {
+
+      &:hover {
+        cursor: pointer;
+      }
+      s
       td {
         min-width: 100px;
       }
