@@ -171,6 +171,23 @@ const routes = [
                     ]
                 },
             },
+            {
+                path: 'equip/terminal',
+                name: 'EquipTerminal',
+                component: () => import('@/views/EquipTerminal/EquipTerminal'),
+                meta: {
+                    breadcrumb: [
+                        {
+                            text: '設備管理',
+                            to: { name: 'EquipManagement' }
+                        },
+                        {
+                            text: '設備 logs',
+                            to: { name: 'EquipManagement' }
+                        },
+                    ]
+                },
+            },
         ],
     },
     {

@@ -43,6 +43,7 @@
             index="equip"
             :childrenLinks="[
               { header: '設備總覽', link: '/backend/equip' },
+              { header: '設備 logs', link: '/backend/equip/terminal' },
               // { header: '費用類型', link: '/backend/costType' },
               // { header: '網路回應檢查', link: '/backend/network' },
               // { header: '底片剩餘數量', link: '/backend/remaining' },
