@@ -7,6 +7,9 @@
   export default {
     name: 'BreadcrumbHistory',
     props: {
+      /**
+       * 設定與 router 相同的 name 於陣列中, 這些頁面將不顯示書籤
+       */
       exclude: {type: Array, default: () => []}
     },
     computed: {
@@ -27,6 +30,6 @@
         //     )
         // );
       }
-    }
+    },
   }
 </script>

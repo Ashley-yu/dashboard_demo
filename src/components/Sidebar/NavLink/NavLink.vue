@@ -46,18 +46,60 @@ import { mapActions } from 'vuex';
 export default {
   name: 'NavLink',
   props: {
+    /**
+     * 設定要顯示於右方的 badge 文字
+     */
     badge: { type: String, dafault: '' },
+    /**
+     * 設定要顯示的連結文字
+     */
     header: { type: String, default: '' },
+    /**
+     * 設定要顯示的 icon class 名稱
+     */
     iconName: { type: String, default: '' },
+    /**
+     * 未使用
+     */
     headerLink: { type: String, default: '' },
+    /**
+     * 設定要前往的 router-link 連結
+     */
     link: { type: String, default: '' },
+    /**
+     * 設定多個子選單的名稱及連結
+     */
     childrenLinks: { type: Array, default: null },
+    /**
+     * 設定 li 的客製化 class 名稱
+     */
     className: { type: String, default: '' },
+    /**
+     * 設定是否要有選單標題樣式, 未設置子選單時(childrenLinks)才能使用
+     */
     isHeader: { type: Boolean, default: false },
+    /**
+     * 未使用
+     */
     deep: { type: Number, default: 0 },
+    /**
+     * 用來判斷哪個項目要設置為 active 樣式
+     */
     activeItem: { type: String, default: '' },
+    /**
+     * 設定連結標題右上方標註文字
+     */
     label: { type: String },
+    /**
+     * 設定標註文字顏色
+     * @values primary, secondary, success, info, warning, danger,
+     * dark, inverse, gray, light, default,
+     * primary-light, success-light, info-light, warning-light, danger-light
+     */
     labelColor: { type: String, default: 'warning' },
+    /**
+     * 為每個連結設定唯一的識別文字, 作為判斷 active 時使用
+     */
     index: { type: String },
   },
   data() {
