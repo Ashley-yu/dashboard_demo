@@ -1,24 +1,26 @@
 # dashboard_demo
 
-## Project setup
-```
-yarn install
-```
+## 簡介
+使用 Sing App 模板及圖表等套件，練習製作簡易 dashboard。
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## 主要技術
+* Vue Cli 2
+* Vuex
+* bootstrap
+* bootstrap-vue
+* highcharts
+* xterm
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## 說明
+###vue-styleguidist
+開啟樣式導覽服務：
 
-### Lints and fixes files
-```
-yarn lint
-```
+`yarn styleguide`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+執行編譯靜態版本：
+
+`yarn styleguide:build`
+
+## 聲明
+採用模板：[Sing App](http://https://github.com/flatlogic/sing-app-vue-dashboard "Sing App") 
+

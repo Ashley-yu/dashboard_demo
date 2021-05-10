@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       term: '',
+      observer: null,
     };
   },
   methods: {
@@ -102,13 +103,26 @@ export default {
       window.onresize = function() {
         fitAddon.fit();
       };
+
+      // Resize element
+      this.observe = new ResizeObserver(() => {
+        fitAddon.fit();
+      });
+      this.observe.observe(document.querySelector('#terminal'));
     },
+    disconnectObserver() {
+      if (this.observer) {
+        this.observer.disconnect();
+        this.observer = null;
+      }
+    }
   },
   mounted() {
     this.runTerminal();
   },
   beforeDestroy () {
     this.term.dispose();
+    this.disconnectObserver();
   },
 };
 </script>
