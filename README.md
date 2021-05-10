@@ -4,7 +4,7 @@
 使用 Sing App 模板及圖表等套件，練習製作簡易 dashboard。
 
 ## 主要技術
-* Vue Cli 2
+* Vue
 * Vuex
 * bootstrap
 * bootstrap-vue
@@ -12,7 +12,7 @@
 * xterm
 
 ## 說明
-###vue-styleguidist
+### vue-styleguidist
 開啟樣式導覽服務：
 
 `yarn styleguide`
