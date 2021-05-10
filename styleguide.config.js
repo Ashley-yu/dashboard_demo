@@ -8,7 +8,7 @@ module.exports = {
 	// components: 'src/components/**/[A-Z]*.vue',
 	// defaultExample: true,
 	// exampleMode: 'expand',
-	styleguideDir: 'styleguide',
+	styleguideDir: 'dist-styleguide',
 	codeSplit: true,
 	skipComponentsWithoutExample: true,
 	sections: [
